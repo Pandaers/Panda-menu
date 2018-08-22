@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 22/08/2018 00:44:03
+ Date: 22/08/2018 22:03:25
 */
 
 SET NAMES utf8mb4;
@@ -53,11 +53,7 @@ CREATE TABLE `pe_food`  (
   `price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '售价',
   `originalprice` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '原价（只做显示用）',
   `detail` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品详情，图文',
-<<<<<<< HEAD
-  `cat_id` int(11)  NOT NULL DEFAULT 0 COMMENT '商品类别',
-=======
   `catid` int(11) NOT NULL DEFAULT 0 COMMENT '商品类别',
->>>>>>> 0610fb51c22cf29d8bf24b3ecd44b9dd24fbeaa0
   `status` smallint(1) NOT NULL DEFAULT 0 COMMENT '上架状态：0=下架，1=上架',
   `addtime` int(11) NOT NULL DEFAULT 0,
   `score` int(3) NOT NULL DEFAULT 0,
