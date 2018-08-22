@@ -31,6 +31,18 @@ CREATE TABLE `cms_admin`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Table structure for pe_cat
+-- ----------------------------
+DROP TABLE IF EXISTS `pe_cat`;
+CREATE TABLE `pe_cat`  (
+  `catid` int(11) NOT NULL AUTO_INCREMENT COMMENT '商品类别',
+  `storeid` int(10) UNSIGNED NOT NULL COMMENT '商店id',
+  `createtime` int(10) UNSIGNED NOT NULL COMMENT '注册时间',
+  `catname` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '类别名',
+  PRIMARY KEY (`catid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
 -- Table structure for pe_food
 -- ----------------------------
 DROP TABLE IF EXISTS `pe_food`;
@@ -39,17 +51,21 @@ CREATE TABLE `pe_food`  (
   `storeid` int(10) UNSIGNED NOT NULL COMMENT '商店id',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品名称',
   `price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '售价',
-  `original_price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '原价（只做显示用）',
+  `originalprice` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '原价（只做显示用）',
   `detail` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品详情，图文',
+<<<<<<< HEAD
   `cat_id` int(11)  NOT NULL DEFAULT 0 COMMENT '商品类别',
+=======
+  `catid` int(11) NOT NULL DEFAULT 0 COMMENT '商品类别',
+>>>>>>> 0610fb51c22cf29d8bf24b3ecd44b9dd24fbeaa0
   `status` smallint(1) NOT NULL DEFAULT 0 COMMENT '上架状态：0=下架，1=上架',
   `addtime` int(11) NOT NULL DEFAULT 0,
   `score` int(3) NOT NULL DEFAULT 0,
-  `is_delete` smallint(1) NOT NULL DEFAULT 0,
-  `virtual_sales` int(11) NULL DEFAULT 0 COMMENT '虚拟销量',
-  `cover_pic` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '商品缩略图',
-  `video_url` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '视频',
-  `real_sales` int(11) NULL DEFAULT 0 COMMENT '真实销量',
+  `isdelete` smallint(1) NOT NULL DEFAULT 0,
+  `virtualsales` int(11) NULL DEFAULT 0 COMMENT '虚拟销量',
+  `coverpic` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '商品缩略图',
+  `videourl` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '视频',
+  `realsales` int(11) NULL DEFAULT 0 COMMENT '真实销量',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1000 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
