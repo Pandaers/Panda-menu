@@ -1,39 +1,27 @@
 package com.panda.model;
 
-public class User {
+public class Store {
     private Integer storeid;
-    private Integer userid;
-    private Integer openid;
     private Integer createtime;
     private String nickname;
     private String avatar;
     private String mobile;
-    private short gender;
     private Integer ordernum;
     private String orderprice;
+    private Integer usernum;
 
-    public User(Integer storeid, Integer openid, Integer createtime, String nickname, String avatar, String mobile, short gender, Integer ordernum, String orderprice) {
-        this.storeid = storeid;
-        this.openid = openid;
+    public Store(Integer createtime, String nickname, String avatar, String mobile, Integer ordernum, String orderprice, Integer usernum) {
         this.createtime = createtime;
         this.nickname = nickname;
         this.avatar = avatar;
         this.mobile = mobile;
-        this.gender = gender;
         this.ordernum = ordernum;
         this.orderprice = orderprice;
+        this.usernum = usernum;
     }
 
     public Integer getStoreid() {
         return storeid;
-    }
-
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public Integer getOpenid() {
-        return openid;
     }
 
     public Integer getCreatetime() {
@@ -52,10 +40,6 @@ public class User {
         return mobile;
     }
 
-    public short getGender() {
-        return gender;
-    }
-
     public Integer getOrdernum() {
         return ordernum;
     }
@@ -64,16 +48,12 @@ public class User {
         return orderprice;
     }
 
+    public Integer getUsernum() {
+        return usernum;
+    }
+
     public void setStoreid(Integer storeid) {
         this.storeid = storeid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
-    public void setOpenid(Integer openid) {
-        this.openid = openid;
     }
 
     public void setCreatetime(Integer createtime) {
@@ -92,15 +72,15 @@ public class User {
         this.mobile = mobile;
     }
 
-    public void setGender(short gender) {
-        this.gender = gender;
-    }
-
     public void setOrdernum(Integer ordernum) {
         this.ordernum = ordernum;
     }
 
     public void setOrderprice(String orderprice) {
         this.orderprice = orderprice;
+    }
+
+    public void setUsernum(Integer usernum) {
+        this.usernum = usernum;
     }
 }
