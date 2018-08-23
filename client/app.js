@@ -104,6 +104,9 @@ App({
 
   globalData: {
     loginInfo: null,
-    currentAddress: null
+    currentAddress: null,
+  },
+  requestUrl:{
+    login:"http://www.hcyang.top/login"
   }
 })

@@ -1,5 +1,5 @@
 // pages/shop/show.js
-
+//import js
 import {
   makePhoneCall,
   datetimeFormat
@@ -9,6 +9,9 @@ import {
   getSellerInfo,
   getReviews, addQuasiOrder
 } from '../../utils/apis'
+//import js end
+var app = getApp()
+//import app
 
 
 var initOrder = {
@@ -27,7 +30,7 @@ Page({
 
     activeMenuIndex: 0,
     showCart: false,
-
+    
     showSubGoods: false,
 
     order: initOrder,
@@ -38,11 +41,13 @@ Page({
       page: 0,
     },
     subNums:[100],
+    goods_map: {
+      100: { goods_id: 100, goods_name: "馒头",price:1000 }},
     info:
       {
         seller_name: "小皮-皮皮虾",
-        goods_map: { 100: { goods_id: 100, goods_name: "馒头"},
-          101: { goods_id: 101, goods_name: "tou" },
+        goods_map: { 100: { goods_id: 100, goods_name: "馒头",price:1000},
+          101: { goods_id: 101, goods_name: "tou", price: 1000 },
         },
         pic_url: "http:xxxx",
         min_price: "11",
@@ -64,8 +69,8 @@ Page({
             pic_url: "www.baidu.com",
             goods_name: "馒头",
             sales: 10,
-            price: "1000",
-            sub_goods: [{sub_id:0,sub_name:"大馒头"}],
+            price: 1000,
+            sub_goods: [],
             goodsNums: 500
           },
             {
@@ -73,8 +78,8 @@ Page({
               pic_url: "www.baidu.com",
               goods_name: "馒头",
               sales: 10,
-              price: "1000",
-              sub_goods: [{ sub_id: 0, sub_name: "大馒头" }],
+              price: 1000,
+              sub_goods:[],
               goodsNums: 500
             },
 
@@ -83,8 +88,8 @@ Page({
               pic_url: "www.baidu.com",
               goods_name: "馒头",
               sales: 10,
-              price: "1000",
-              sub_goods: [{ sub_id: 0, sub_name: "大馒头" }],
+              price: 1000,
+              sub_goods:[],
               goodsNums: 500
             },
 
@@ -93,8 +98,8 @@ Page({
               pic_url: "www.baidu.com",
               goods_name: "馒头",
               sales: 10,
-              price: "1000",
-              sub_goods: [{ sub_id: 0, sub_name: "大馒头" }],
+              price: 1000,
+              sub_goods:[],
               goodsNums: 500
             },
 
@@ -103,8 +108,8 @@ Page({
               pic_url: "www.baidu.com",
               goods_name: "馒头",
               sales: 10,
-              price: "1000",
-              sub_goods: [{ sub_id: 0, sub_name: "大馒头" }],
+              price: 1000,
+              sub_goods:[],
               goodsNums: 500
             },
 
@@ -123,8 +128,8 @@ Page({
               pic_url: "www.baidu.com",
               goods_name: "头",
               sales: 10,
-              price: "1000",
-              sub_goods: [{ sub_id: 0, sub_name: "大馒头" }],
+              price: 1000,
+              sub_goods:[],
               goodsNums: 500
             },
             {
@@ -132,18 +137,8 @@ Page({
               pic_url: "www.baidu.com",
               goods_name: "馒头",
               sales: 10,
-              price: "1000",
-              sub_goods: [{ sub_id: 0, sub_name: "大馒头" }],
-              goodsNums: 500
-            },
-
-            {
-              goods_id: 100,
-              pic_url: "www.baidu.com",
-              goods_name: "馒头",
-              sales: 10,
-              price: "1000",
-              sub_goods: [{ sub_id: 0, sub_name: "大馒头" }],
+              price: 1000,
+              sub_goods:[],
               goodsNums: 500
             },
 
@@ -152,8 +147,8 @@ Page({
               pic_url: "www.baidu.com",
               goods_name: "馒头",
               sales: 10,
-              price: "1000",
-              sub_goods: [{ sub_id: 0, sub_name: "大馒头" }],
+              price: 1000,
+              sub_goods:[],
               goodsNums: 500
             },
 
@@ -162,8 +157,18 @@ Page({
               pic_url: "www.baidu.com",
               goods_name: "馒头",
               sales: 10,
-              price: "1000",
-              sub_goods: [{ sub_id: 0, sub_name: "大馒头" }],
+              price: 1000,
+              sub_goods:[],
+              goodsNums: 500
+            },
+
+            {
+              goods_id: 100,
+              pic_url: "www.baidu.com",
+              goods_name: "馒头",
+              sales: 10,
+              price: 1000,
+              sub_goods:[],
               goodsNums: 500
             },
 
@@ -184,6 +189,32 @@ Page({
     this.id = options.id || 2
     this.loadData()
     this.loadReview()
+    wx.login({
+      success: function (res) {
+        var code = res.code;
+        console.log(code)
+        wx.request({
+          url: app.requestUrl.login,
+          data: {
+            storeid: '11223',
+            code: code,
+            nickname: "110",
+            avatar: "111",
+            mobile: '18642316507',
+            gender: '0'
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log(res.data)
+          },
+          fail: function () {
+            console.log("bad ")
+          }
+        })
+      }
+    })
   },
   onReady: function () {
     // 页面渲染完成
@@ -325,9 +356,9 @@ Page({
       var {sub_id, sub_name} = goods
     }
     order.totalNum += 1;
-    order.totalGoodsPrice += +goods.price;
-    order.totalPackingFee += +goods.packing_fee;
-    order.totalPrice = +((order.totalGoodsPrice + order.totalPackingFee).toFixed(2));
+    console.log(goods.price)
+    order.totalGoodsPrice += goods.price;
+    order.totalPrice = order.totalGoodsPrice.toFixed(2);
     order.goods = this.addGoods(order.goods, {
       goods_id, goods_name,
       sub_id, sub_name,
@@ -359,9 +390,9 @@ Page({
       goods = goods.sub_goods_map[subId];
     }
     order.totalNum -= 1;
-    order.totalGoodsPrice -= +goods.price;
-    order.totalPackingFee -= +goods.packing_fee;
-    order.totalPrice = +((order.totalGoodsPrice + order.totalPackingFee).toFixed(2));
+    order.totalGoodsPrice -= goods.price;
+    order.totalPackingFee -= goods.packing_fee;
+    order.totalPrice = order.totalGoodsPrice.toFixed(2);
     order.goods = this.removeGoods(order.goods, {
       goods_id: goodsId,
       sub_id: subId,

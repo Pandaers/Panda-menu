@@ -1,3 +1,8 @@
+    foods_map: {
+      1: { goods_id: 100, goods_name: "馒头",price:1000 },
+	  2: { goods_id: 100, goods_name: "馒头",price:1000 },
+	  },
+
 {
     seller_name: "小皮-皮皮虾",
     pic_url: "http:xxxx",

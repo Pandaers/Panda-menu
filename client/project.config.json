@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -12,8 +12,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.2.3",
-	"appid": "wx8b9f69303ac596dd",
-	"projectname": "demo_1",
+	"appid": "wx955d8d61806b3390",
+	"projectname": "pandaeat",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
