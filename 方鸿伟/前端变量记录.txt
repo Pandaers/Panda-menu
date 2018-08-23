@@ -1,0 +1,31 @@
+
+{
+seller_name:"小皮-皮皮虾",
+pic_url : "http:xxxx",
+min_price : "11",
+reach_time : "5",
+delivery_fee : "3",
+phone:"17785854642",
+address:"裕华路27号河北科技大学",
+sell_time:"上午八点-下午九点"
+quality:"80",
+service:"70",
+promotion:[{pic_url:"",info:"今日特价，满15减10"}]
+overall:"5",
+distanceFormat : "5",
+notice : "今日特价，满15减10",
+menus : [{
+menu_name:"主食",
+goods2:[{
+goods_id:1,
+pic_url:"www.baidu.com",
+goods_name:"馒头",
+sales:10,
+price:"1000",
+sub_goods:["大馒头"],
+goodsNums:500
+}]
+}]
+}
+
+
