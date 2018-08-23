@@ -6,11 +6,6 @@ public class Cat {
     private Integer createtime;
     private String catname;
 
-    public Cat(Integer storeid, Integer createtime, String catname) {
-        this.storeid = storeid;
-        this.createtime = createtime;
-        this.catname = catname;
-    }
 
     public void setCatid(Integer catid) {
         this.catid = catid;

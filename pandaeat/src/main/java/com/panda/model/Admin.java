@@ -7,12 +7,7 @@ public class Admin {
     private String password;
     private String createtime;
 
-    public Admin(Integer storeid, String name, String password, String createtime) {
-        this.storeid = storeid;
-        this.name = name;
-        this.password = password;
-        this.createtime = createtime;
-    }
+
 
     public void setAdminid(Integer adminid) {
         this.adminid = adminid;

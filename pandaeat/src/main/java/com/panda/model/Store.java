@@ -10,15 +10,7 @@ public class Store {
     private String orderprice;
     private Integer usernum;
 
-    public Store(Integer createtime, String nickname, String avatar, String mobile, Integer ordernum, String orderprice, Integer usernum) {
-        this.createtime = createtime;
-        this.nickname = nickname;
-        this.avatar = avatar;
-        this.mobile = mobile;
-        this.ordernum = ordernum;
-        this.orderprice = orderprice;
-        this.usernum = usernum;
-    }
+
 
     public Integer getStoreid() {
         return storeid;

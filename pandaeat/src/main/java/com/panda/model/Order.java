@@ -6,25 +6,14 @@ public class Order {
     private Integer orderid;
     private Integer userid;
     private String createtime;
-    private ordercontent ordercontent;
+    private Ordercontent ordercontent;
     private String orderprice;
     private Integer customernum;
     private short orderstatue;
     private String endtime;
     private short payway;
 
-    public Order(Integer storeid, Integer seatid, Integer userid, String createtime, ordercontent ordercontent, String orderprice, Integer customernum, short orderstatue, String endtime, short payway) {
-        this.storeid = storeid;
-        this.seatid = seatid;
-        this.userid = userid;
-        this.createtime = createtime;
-        this.ordercontent = ordercontent;
-        this.orderprice = orderprice;
-        this.customernum = customernum;
-        this.orderstatue = orderstatue;
-        this.endtime = endtime;
-        this.payway = payway;
-    }
+
 
     public Integer getStoreid() {
         return storeid;
@@ -46,7 +35,7 @@ public class Order {
         return createtime;
     }
 
-    public ordercontent getOrdercontent() {
+    public Ordercontent getOrdercontent() {
         return ordercontent;
     }
 
@@ -90,7 +79,7 @@ public class Order {
         this.createtime = createtime;
     }
 
-    public void setOrdercontent(ordercontent ordercontent) {
+    public void setOrdercontent(Ordercontent ordercontent) {
         this.ordercontent = ordercontent;
     }
 

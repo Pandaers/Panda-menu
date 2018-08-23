@@ -12,17 +12,7 @@ public class User {
     private Integer ordernum;
     private String orderprice;
 
-    public User(Integer storeid, Integer openid, Integer createtime, String nickname, String avatar, String mobile, short gender, Integer ordernum, String orderprice) {
-        this.storeid = storeid;
-        this.openid = openid;
-        this.createtime = createtime;
-        this.nickname = nickname;
-        this.avatar = avatar;
-        this.mobile = mobile;
-        this.gender = gender;
-        this.ordernum = ordernum;
-        this.orderprice = orderprice;
-    }
+
 
     public Integer getStoreid() {
         return storeid;

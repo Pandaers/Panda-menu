@@ -20,22 +20,7 @@ public class Food {
     private String videourl;
     private Integer realsales;
 
-    public Food(Integer storeid, String name, BigDecimal price, BigDecimal originalprice, String detail, Integer catid, Integer status, Integer addtime, Integer score, Integer isdelete, Integer virtualsales, String coverpic, String videourl, Integer realsales) {
-        this.storeid = storeid;
-        this.name = name;
-        this.price = price;
-        this.originalprice = originalprice;
-        this.detail = detail;
-        this.catid = catid;
-        this.status = status;
-        this.addtime = addtime;
-        this.score = score;
-        this.isdelete = isdelete;
-        this.virtualsales = virtualsales;
-        this.coverpic = coverpic;
-        this.videourl = videourl;
-        this.realsales = realsales;
-    }
+
 
     public void setId(Integer id) {
         this.id = id;
