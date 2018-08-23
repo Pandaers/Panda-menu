@@ -1,8 +1,10 @@
 spring:
   datasource:
     username: root
-    password: Welcome_1
-    url: jdbc:mysql://192.168.179.131:3306/jdbc
+#    password: Welcome_1
+    password: root
+#    url: jdbc:mysql://192.168.179.131:3306/jdbc
+    url: jdbc:mysql://127.0.0.1:3306/pandaeat?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     # 初始化大小，最小，最大

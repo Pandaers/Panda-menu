@@ -1,8 +1,12 @@
 package com.panda.model;
 
-public class User {
+/**
+ * @Auther: 简单DI年华
+ * @Date: 18-8-23 14:26
+ * @Description:
+ */
+public class RequestUser {
     private Integer storeid;
-    private Integer userid;
     private Integer openid;
     private Integer createtime;
     private String nickname;
@@ -12,9 +16,8 @@ public class User {
     private Integer ordernum;
     private String orderprice;
 
-    public User(Integer storeid, Integer userid, Integer openid, Integer createtime, String nickname, String avatar, String mobile, short gender, Integer ordernum, String orderprice) {
+    public RequestUser(Integer storeid, Integer openid, Integer createtime, String nickname, String avatar, String mobile, short gender, Integer ordernum, String orderprice) {
         this.storeid = storeid;
-        this.userid = userid;
         this.openid = openid;
         this.createtime = createtime;
         this.nickname = nickname;
@@ -29,9 +32,6 @@ public class User {
         return storeid;
     }
 
-    public Integer getUserid() {
-        return userid;
-    }
 
     public Integer getOpenid() {
         return openid;
@@ -67,10 +67,6 @@ public class User {
 
     public void setStoreid(Integer storeid) {
         this.storeid = storeid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
     }
 
     public void setOpenid(Integer openid) {
