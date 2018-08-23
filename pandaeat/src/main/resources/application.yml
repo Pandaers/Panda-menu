@@ -1,10 +1,17 @@
+wxapp:
+#  appid: wx4f4a31c69f79cd6e
+#  appsecret: bd2dcac539bc006fcedbb96d88c3094f
+  appid: wx955d8d61806b3390
+  appsecret: ccdc310b68b14908fb028acd97f07b31
+
+
 spring:
   datasource:
-    username: root
+    username: pandaeat
 #    password: Welcome_1
-    password: root
+    password: ZemYfRXKyCwLSZDf
 #    url: jdbc:mysql://192.168.179.131:3306/jdbc
-    url: jdbc:mysql://127.0.0.1:3306/pandaeat?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://120.78.174.107:3306/pandaeat?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     # 初始化大小，最小，最大
@@ -21,6 +28,7 @@ spring:
     testWhileIdle: true
     testOnBorrow: false
     testOnReturn: false
+
     poolPreparedStatements: true
     # 配置监控统计拦截的filters,去掉监控界面sql无法统计，‘wall’用于防火墙
     filters: stat,wall,log4j
@@ -31,4 +39,4 @@ spring:
 #    schema:
 #      - classpath:department.sql
 server:
-  port: 9000
+  port: 80

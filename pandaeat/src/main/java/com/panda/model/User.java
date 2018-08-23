@@ -3,8 +3,8 @@ package com.panda.model;
 public class User {
     private Integer storeid;
     private Integer userid;
-    private Integer openid;
-    private Integer createtime;
+    private String openid;
+    private String createtime;
     private String nickname;
     private String avatar;
     private String mobile;
@@ -12,7 +12,7 @@ public class User {
     private Integer ordernum;
     private String orderprice;
 
-    public User(Integer storeid, Integer userid, Integer openid, Integer createtime, String nickname, String avatar, String mobile, short gender, Integer ordernum, String orderprice) {
+    public User(Integer storeid, Integer userid, String openid, String createtime, String nickname, String avatar, String mobile, short gender, Integer ordernum, String orderprice) {
         this.storeid = storeid;
         this.userid = userid;
         this.openid = openid;
@@ -33,11 +33,11 @@ public class User {
         return userid;
     }
 
-    public Integer getOpenid() {
+    public String getOpenid() {
         return openid;
     }
 
-    public Integer getCreatetime() {
+    public String getCreatetime() {
         return createtime;
     }
 
@@ -73,11 +73,11 @@ public class User {
         this.userid = userid;
     }
 
-    public void setOpenid(Integer openid) {
+    public void setOpenid(String openid) {
         this.openid = openid;
     }
 
-    public void setCreatetime(Integer createtime) {
+    public void setCreatetime(String createtime) {
         this.createtime = createtime;
     }
 
