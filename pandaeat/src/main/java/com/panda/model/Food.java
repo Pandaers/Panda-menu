@@ -16,7 +16,8 @@ public class Food {
     private Integer score;
     private Integer isdelete;
     private Integer virtualsales;
-    private String coverpic;
+    private String compressimg;
+    private String img;
     private String videourl;
     private Integer realsales;
 
@@ -70,9 +71,6 @@ public class Food {
         this.virtualsales = virtualsales;
     }
 
-    public void setCoverpic(String coverpic) {
-        this.coverpic = coverpic;
-    }
 
     public void setVideourl(String videourl) {
         this.videourl = videourl;
@@ -130,8 +128,20 @@ public class Food {
         return virtualsales;
     }
 
-    public String getCoverpic() {
-        return coverpic;
+    public String getCompressimg() {
+        return compressimg;
+    }
+
+    public void setCompressimg(String compressimg) {
+        this.compressimg = compressimg;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getVideourl() {

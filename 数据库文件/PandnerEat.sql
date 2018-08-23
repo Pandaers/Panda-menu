@@ -65,7 +65,8 @@ CREATE TABLE `pe_food` (
   `score` int(3) NOT NULL DEFAULT '0',
   `isdelete` smallint(1) NOT NULL DEFAULT '0',
   `virtualsales` int(11) DEFAULT '0' COMMENT '虚拟销量',
-  `coverpic` longtext COMMENT '商品缩略图',
+  `compressimg` longtext COMMENT '商品缩略图',
+  `img` longtext COMMENT '商品原图',
   `videourl` longtext COMMENT '视频',
   `realsales` int(11) DEFAULT '0' COMMENT '真实销量',
   PRIMARY KEY (`id`) USING BTREE
