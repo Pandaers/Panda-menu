@@ -38,5 +38,10 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 #    schema:
 #      - classpath:department.sql
+
 server:
-  port: 80
+  port: 443
+  ssl:
+    key-store: classpath:214576818110011.pfx
+    key-store-password: 214576818110011
+    key-store-type: PKCS12
