@@ -6,11 +6,63 @@ public class Store {
     private String nickname;
     private String avatar;
     private String mobile;
+    private String address;
+    private String selltime;
+    private Integer foodscore;
+    private Integer serverscore;
+    private Integer avescore;
+    private String notice;
     private Integer ordernum;
     private String orderprice;
     private Integer usernum;
 
+    public String getNotice() {
+        return notice;
+    }
 
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getSelltime() {
+        return selltime;
+    }
+
+    public void setSelltime(String selltime) {
+        this.selltime = selltime;
+    }
+
+    public Integer getFoodscore() {
+        return foodscore;
+    }
+
+    public void setFoodscore(Integer foodscore) {
+        this.foodscore = foodscore;
+    }
+
+    public Integer getServerscore() {
+        return serverscore;
+    }
+
+    public void setServerscore(Integer serverscore) {
+        this.serverscore = serverscore;
+    }
+
+    public Integer getAvescore() {
+        return avescore;
+    }
+
+    public void setAvescore(Integer avescore) {
+        this.avescore = avescore;
+    }
 
     public Integer getStoreid() {
         return storeid;

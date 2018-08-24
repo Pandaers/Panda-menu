@@ -1,11 +1,10 @@
 package com.panda.mapper;
 
 import com.panda.model.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
+
+import java.util.Locale;
 
 /**
  * @Auther: 简单DI年华
@@ -32,5 +31,15 @@ public interface UserMapper {
             "VALUES(#{user.storeid},#{user.openid},#{user.createtime},#{user.nickname},#{user.avatar},#{user.mobile},#{user.gender},#{user.ordernum},#{user.orderprice});")
     @Options(useGeneratedKeys = true, keyProperty = "user.userid")
     void insertUserData(@Param("user")User user);
+
+    @Select("SELECT COUNT(openid) FROM pe_user WHERE openid='#{openid}'")
+    int selectUersOpenId(String openid);
+
+    @Select("select * from pe_user where openid='#{openid}' LIMIT 1")
+    User selectUersDataByOpenId(String openid);
+
+
+
+
 
 }
