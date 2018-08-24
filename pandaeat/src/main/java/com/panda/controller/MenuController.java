@@ -32,10 +32,10 @@ public class MenuController {
 
         List<Food> foodList=foodMapper.selectFoodDateByStoreId(storeid);
         Store store =storeMapper.selcetStoreDateByStoreId(storeid);
-
+        //要返回的result
         Map result = new HashMap();
 
-        //菜品类别的int转name对应map
+        //菜品类别 的int转name对应map
         Map<Integer, String> catmap = catMapper.selectAllCatDate().stream().collect(Collectors.toMap(Cat::getCatid, Cat::getCatname));
 
         result.put("nickname",store.getNickname());
@@ -47,12 +47,18 @@ public class MenuController {
         result.put("severscore",store.getServerscore());
         result.put("avescore",store.getAvescore());
         result.put("notice",store.getNotice());
+
+        //按菜品类别进行分组，返回map的key=商品类别值，value=同商品类别的商品list
         Map<Integer, List<Food>> groupBy = foodList.stream().collect(Collectors.groupingBy(Food::getCatid));
+
+        //对分组map遍历
         for(Map.Entry<Integer, List<Food>> entry:groupBy.entrySet()){
             Map goupMap = new HashMap();
             goupMap.put("catname",catmap.get(entry.getKey()));
             Map goupTempMap = new HashMap();
             List<Food> innerFoodList=entry.getValue();
+
+            //对每个小组内list进行遍历，并插入到tempMap中
             for(Food list:innerFoodList){
                 goupTempMap.put("id",list.getId());
                 goupTempMap.put("avatar",list.getCompressimg());
@@ -61,9 +67,9 @@ public class MenuController {
                 goupTempMap.put("price",list.getPrice());
                 goupTempMap.put("goodsnums",list.getGoodsnums());
             }
+            //tempMap插入result
             goupMap.put("foods",innerFoodList);
             result.put("menus",goupMap);
-            System.out.println("key=" +entry.getKey() +" and value="+entry.getValue());
         }
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
