@@ -45,6 +45,14 @@ public class UserController {
         String openid  = wxApi.getOpenid(data.getCode());
 
         //做查询操作 看是否重复
+        if(userMapper.selectUersOpenId(openid)!=0){
+            Map result = new HashMap();
+            User user=userMapper.selectUersDataByOpenId(openid);
+            result.put("userid",user.getUserid());
+            result.put("nickname",user.getNickname());
+            result.put("openid",openid);
+            return new ResponseEntity(RespCode.SUCCESS,result);
+        }
 
         //拟合要插入的数据
         User user = new User(Integer.parseInt(data.getStoreid()),0,openid,timeUtil.getNowTime(),data.getNickname()
