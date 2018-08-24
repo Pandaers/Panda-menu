@@ -20,8 +20,15 @@ public class Food {
     private String img;
     private String videourl;
     private Integer realsales;
+    private Integer goodsnums;
 
+    public Integer getGoodsnums() {
+        return goodsnums;
+    }
 
+    public void setGoodsnums(Integer goodsnums) {
+        this.goodsnums = goodsnums;
+    }
 
     public void setId(Integer id) {
         this.id = id;

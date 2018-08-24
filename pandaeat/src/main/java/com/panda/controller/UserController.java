@@ -25,7 +25,6 @@ import java.util.Map;
 @RestController
 public class UserController {
 
-
     //mapper注入
     @Autowired
     UserMapper userMapper;
