@@ -105,6 +105,11 @@ App({
   globalData: {
     loginInfo: null,
     currentAddress: null,
+    storeid:"131513",
+    seatid: "12",
+    order:{},
+    userid:"1",
+    orderid:"00100"
   },
   requestUrl:{
     login:"http://www.hcyang.top/login"

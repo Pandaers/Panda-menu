@@ -127,16 +127,16 @@ export function logout(options) {
 
 // 获取登录信息
 export function getLoginInfo(options) {
+  var app = getApp()
   const {
     success, error
   } = options
   wx.login({
     success(res) {
       fetch({
-        url: 'index.php?m=Api&c=WeixinMall&a=getLoginInfo',
+        url: app.requestUrl.login,
         data: {
-          wx_code: res['code'],
-          session_3rd: wx.getStorageSync('session_3rd')
+          code: res['code'],
         },
         success, error
       })
@@ -291,13 +291,13 @@ export function deleteUserAddr(options) {
 // 添加准订单
 export function addQuasiOrder(options) {
   const {
-    seller_id,
+    storeId,
     goods,
     success, error
   } = options
   getApp().getCurrentAddress(address => {
     var data = {
-      seller_id,
+      sellerId,
       goods: JSON.stringify(goods)
     }
     if (address.addr_id) {

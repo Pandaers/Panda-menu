@@ -66,6 +66,10 @@
   flex: 1;
   color: #999;
 }
+.quasi-goods__item-singlePrice {
+  flex: 3;
+  color: #999;
+}
 
 
 /* quasi-action*/ 

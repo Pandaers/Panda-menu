@@ -14,45 +14,43 @@
       </navigator>
     </view>
   </view>
-  <view class="weui-cells">
-    <view class="weui-cell weui-cell_access">
-      <view class="weui-cell__bd">支付方式</view>
-      <view class="">在线支付</view>
-    </view>
+  
 
-    <navigator url="/pages/mine/coupon?id={{info.user_coupon_id}}&callback=callbackCoupon" wx:if="{{info.user_coupon_id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__bd">红包</view>
-      <view class="weui-cell__ft_in-access">¥{{info.coupon_money}}</view>
-    </navigator>
-    <view wx:else class="weui-cell weui-cell_access">
-      <view class="weui-cell__bd">红包</view>
-      <view class="weui-cell__ft">暂无可用</view>
-    </view>
+
+
+
+
+
+
+
+  <view class="weui-cells">
+  <i-panel>
+<i-cell title="支付方式" bindtap='onChangePayway' is-link value="{{finalorder.paywaystring}}"></i-cell>
+</i-panel>
+
+  <i-panel>
+<i-cell title="座位号" bindtap='onChangePayway' value="{{finalorder.seatid}}" disabled>
+</i-cell>
+</i-panel>
   </view>
 
   <view class="quasi-goods">
     <view class="quasi-goods__hd">
       <image class="quasi-goods__img" src="/images/shop-512.png"></image>
-      {{info.seller_name}}
+      {{info.nickName}}
     </view>
     <view class="quasi-goods__bd">
       <view class="quasi-goods__list">
-        <view wx:for="{{info.goods}}" wx:key="{{index}}" class="quasi-goods__item">
-          <view class="quasi-goods__item-name">{{item.goods_name}}</view>
+        <view wx:for="{{goods}}" wx:key="{{index}}" class="quasi-goods__item">
+          <view class="quasi-goods__item-name">{{item.name}}</view>
+          <view class="quasi-goods__item-singlePrice">单价：¥{{item.price}}</view>
           <view class="quasi-goods__item-num">x{{item.num}}</view>
-          <view class="quasi-goods__item-price">¥{{item.price_sum}}</view>
+          <view class="quasi-goods__item-price">¥{{item.num * item.price}}</view>
         </view>
       </view>
       <view class="quasi-goods__list">
-        <view wx:if="{{info.packing_fee > 0}}" class="quasi-goods__item">
-          <view class="quasi-goods__item-name">餐盒费</view>
-          <view class="quasi-goods__item-num"></view>
-          <view class="quasi-goods__item-price">¥{{info.packing_fee}}</view>
-        </view>
         <view class="quasi-goods__item">
-          <view class="quasi-goods__item-name">配送费</view>
           <view class="quasi-goods__item-num"></view>
-          <view class="quasi-goods__item-price">¥{{info.delivery_fee}}</view>
         </view>
       </view>
       <view wx:if="{{info.cut_money > 0}}" class="quasi-goods__list">
@@ -67,11 +65,11 @@
       <view class="quasi-goods__list">
         <view class="quasi-goods__item">
           <view class="quasi-goods__item-name quasi-goods__item-name_grey">
-            总计¥{{info.order_price}} <text wx:if="{{info.cut_money_total > 0}}">优惠¥{{info.cut_money_total}}</text>
+            总计¥{{order.totalGoodsPrice}} <text wx:if="{{info.cut_money_total > 0}}">优惠¥{{info.cut_money_total}}</text>
           </view>
           <view class="quasi-goods__item-num"></view>
           <view class="quasi-goods__item-price primary-color">
-            实付 ¥{{info.pay_price}}
+            实付 ¥{{order.totalPrice}}
           </view>
         </view>
       </view>
@@ -79,21 +77,18 @@
   </view>
 
   <view class="weui-cells">
-    <navigator url="./content?callback=callbackContent&content={{content}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__bd weui-cell__bd_content">备注</view>
-      <view>{{content}}</view>
-      <view class="weui-cell__ft weui-cell__ft_in-access">{{content ? '' : '口味, 偏好等要求'}}</view>
-    </navigator>
+    <i-input bind:change='onTipsChange' type="textarea" title="备注" placeholder="口味, 偏好等要求" maxlength="50" />
   </view>
 
 </view>
 <view class="quasi-actions">
-  <view class="quasi-actions__cut">已优惠¥{{info.cut_money_total}}</view>
-  <view class="quasi-actions__pay">
+  <view class="quasi-actions__cut">
     待支付
-    <text class="primary-color">¥{{info.pay_price}}</text>
+    <text class="primary-color">¥{{order.totalPrice}}</text>
+  </view>
+  <view class="quasi-actions__pay">
   </view>
   <button bindtap="onAddOrder" loading="{{loading}}" disabled="{{disabled || loading}}" class="weui-btn menu-cart__btn" type="primary">
-    提交订单
+    点菜
   </button>
 </view>

@@ -42,145 +42,66 @@ Page({
     },
     subNums:[100],
     goods_map: {
-      100: { goods_id: 100, goods_name: "馒头",price:1000 }},
+      0: { id:0 , name: "馒头",price:10 },
+      1: { id: 1, name: "米饭", price: 2 },
+      2: { id: 2, name: "红烧肉", price: 100 },
+      3: { id: 3, name: "狮子头", price: 70 }
+      },
     info:
       {
-        seller_name: "小皮-皮皮虾",
-        goods_map: { 100: { goods_id: 100, goods_name: "馒头",price:1000},
-          101: { goods_id: 101, goods_name: "tou", price: 1000 },
-        },
-        pic_url: "http:xxxx",
-        min_price: "11",
-        reach_time: "5",
-        delivery_fee: "3",
-        phone: "17785854642",
+        nickname: "小皮-皮皮虾",
+        avatar: "http:xxxx",
+        mobile: "17785854642",
         address: "裕华路27号河北科技大学",
-        sell_time: "上午八点-下午九点",
-        quality: "80",
-        service: "70",
-        promotion: [{ pic_url: "", info: "今日特价，满15减10" }],
-        overall: "5",
-        distanceFormat: "5",
+        selltime: "上午八点-下午九点",
+        foodscore: "80",
+        severscore: "70",
+        avescore:"75",
+        /*promotion: [{ pic_url: "", info: "今日特价，满15减10" }],*/
         notice: "今日特价，满15减10",
         menus: [{
-          menu_name: "主食",
-          goods2: [{
-            goods_id: 100,
-            pic_url: "www.baidu.com",
-            goods_name: "馒头",
-            sales: 10,
-            price: 1000,
-            sub_goods: [],
+          catname: "主食",
+          foods: [{
+            id: 0,
+            avatar: "www.baidu.com",
+            name: "馒头",
+            virtualsales: 10,
+            price: 10,
             goodsNums: 500
+           
           },
             {
-              goods_id: 100,
-              pic_url: "www.baidu.com",
-              goods_name: "馒头",
-              sales: 10,
-              price: 1000,
-              sub_goods:[],
+              id: 1,
+              avatar: "www.baidu.com",
+              name: "米饭",
+              virtualsales: 10,
+              price: 2,
               goodsNums: 500
-            },
 
-            {
-              goods_id: 100,
-              pic_url: "www.baidu.com",
-              goods_name: "馒头",
-              sales: 10,
-              price: 1000,
-              sub_goods:[],
-              goodsNums: 500
-            },
-
-            {
-              goods_id: 100,
-              pic_url: "www.baidu.com",
-              goods_name: "馒头",
-              sales: 10,
-              price: 1000,
-              sub_goods:[],
-              goodsNums: 500
-            },
-
-            {
-              goods_id: 100,
-              pic_url: "www.baidu.com",
-              goods_name: "馒头",
-              sales: 10,
-              price: 1000,
-              sub_goods:[],
-              goodsNums: 500
-            },
-
-
-          
-          
-          
-          
-          
+            }
           ]
         },
           {
-            menu_name: "食",
-            goods2: [{
-              goods_id: 101,
-              pic_url: "www.baidu.com",
-              goods_name: "头",
-              sales: 10,
-              price: 1000,
-              sub_goods:[],
+            catname: "菜品",
+            foods: [{
+              id: 2,
+              avatar: "www.baidu.com",
+              name: "红烧肉",
+              virtualsales: 10,
+              price: 100,
               goodsNums: 500
+
             },
-            {
-              goods_id: 100,
-              pic_url: "www.baidu.com",
-              goods_name: "馒头",
-              sales: 10,
-              price: 1000,
-              sub_goods:[],
-              goodsNums: 500
-            },
+              {
+                id: 3,
+                avatar: "www.baidu.com",
+                name: "狮子头",
+                virtualsales: 10,
+                price: 70,
+                goodsNums: 500
 
-            {
-              goods_id: 100,
-              pic_url: "www.baidu.com",
-              goods_name: "馒头",
-              sales: 10,
-              price: 1000,
-              sub_goods:[],
-              goodsNums: 500
-            },
-
-            {
-              goods_id: 100,
-              pic_url: "www.baidu.com",
-              goods_name: "馒头",
-              sales: 10,
-              price: 1000,
-              sub_goods:[],
-              goodsNums: 500
-            },
-
-            {
-              goods_id: 100,
-              pic_url: "www.baidu.com",
-              goods_name: "馒头",
-              sales: 10,
-              price: 1000,
-              sub_goods:[],
-              goodsNums: 500
-            },
-
-
-
-
-
-
-
-            ]
-          }]
-      }
+              }]
+      }]}
 
 
   },
@@ -188,33 +109,6 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     this.id = options.id || 2
     this.loadData()
-    this.loadReview()
-    wx.login({
-      success: function (res) {
-        var code = res.code;
-        console.log(code)
-        wx.request({
-          url: app.requestUrl.login,
-          data: {
-            storeid: '11223',
-            code: code,
-            nickname: "110",
-            avatar: "111",
-            mobile: '18642316507',
-            gender: '0'
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            console.log(res.data)
-          },
-          fail: function () {
-            console.log("bad ")
-          }
-        })
-      }
-    })
   },
   onReady: function () {
     // 页面渲染完成
@@ -264,26 +158,6 @@ Page({
     this.setData({
       'review.loading': true
     })
-    getReviews({
-      page,
-      seller_id: id,
-      success(data) {
-        var {review: {
-          list
-        }} = that.data
-        var list2 = data.list.map(item => {
-          item['timeFormat'] = datetimeFormat(item['time']);
-          return item
-        })
-
-        that.setData({
-          'review.list': list ? list.concat(list2) : list2,
-          'review.loading': false,
-          'review.page': page + 1,
-          'review.hasMore': data.count == 10
-        })
-      }
-    })
   },
 
   tabClick: function (e) {
@@ -305,15 +179,16 @@ Page({
   },
 
   addGoods(goods, item) {
-    var {goods_id, sub_id, num} = item
+    var {id, sub_id, num} = item
+    console.log(item)
     var itemIndex;
     if (sub_id) {
       itemIndex = goods.findIndex(item => {
-        return item['goods_id'] == goods_id && item['sub_id'] == sub_id
+        return item['id'] == id && item['sub_id'] == sub_id
       })
     } else {
       itemIndex = goods.findIndex(item => {
-        return item['goods_id'] == goods_id
+        return item['id'] == id
       })
     }
     if (itemIndex >= 0) {
@@ -324,15 +199,15 @@ Page({
     return goods
   },
   removeGoods(goods, item) {
-    var {goods_id, sub_id, num} = item
+    var {id, sub_id, num} = item
     var itemIndex;
     if (sub_id) {
       itemIndex = goods.findIndex(item => {
-        return item['goods_id'] == goods_id && item['sub_id'] == sub_id
+        return item['id'] == id && item['sub_id'] == sub_id
       })
     } else {
       itemIndex = goods.findIndex(item => {
-        return item['goods_id'] == goods_id
+        return item['id'] == id
       })
     }
     if (itemIndex >= 0) {
@@ -347,10 +222,12 @@ Page({
   },
 
   increase(e) {
-    var {order, info: {goods_map}} = this.data;
-    var {goodsId, subId} = e.currentTarget.dataset;
-    var goods = goods_map[goodsId];
-    var {goods_id, goods_name} = goods
+    var { order, info: { goods_map } } = this.data;
+    var { goodsId, subId } = e.currentTarget.dataset;
+    console.log(goodsId)
+    var goods = this.data.goods_map[goodsId];
+    console.log(goods)
+    var { id, goods_name } = goods
     if (subId) {
       goods = goods.sub_goods_map[subId];
       var {sub_id, sub_name} = goods
@@ -360,10 +237,8 @@ Page({
     order.totalGoodsPrice += goods.price;
     order.totalPrice = order.totalGoodsPrice.toFixed(2);
     order.goods = this.addGoods(order.goods, {
-      goods_id, goods_name,
-      sub_id, sub_name,
+      id: goods.id, name:goods.name,
       price: goods.price,
-      packing_fee: goods.packing_fee,
       num: 1
     })
     order.goodsNums = this.calcGoodsNums(order.goods)
@@ -383,9 +258,9 @@ Page({
   },
   decrease(e) {
     var {order, info: {goods_map}} = this.data;
+    console.log(e)
     var {goodsId, subId} = e.currentTarget.dataset;
-
-    var goods = goods_map[goodsId];
+    var goods = this.data.goods_map[goodsId];
     if (subId) {
       goods = goods.sub_goods_map[subId];
     }
@@ -394,8 +269,7 @@ Page({
     order.totalPackingFee -= goods.packing_fee;
     order.totalPrice = order.totalGoodsPrice.toFixed(2);
     order.goods = this.removeGoods(order.goods, {
-      goods_id: goodsId,
-      sub_id: subId,
+      id: goodsId,
       num: 1
     })
     order.goodsNums = this.calcGoodsNums(order.goods)
@@ -418,11 +292,11 @@ Page({
   calcGoodsNums(goods) {
     var goodsNums = {}
     for (let i = 0, len = goods.length; i < len; i++) {
-      let {goods_id, num} = goods[i]
-      if (goodsNums[goods_id]) {
-        goodsNums[goods_id] += num
+      let {id, num} = goods[i]
+      if (goodsNums[id]) {
+        goodsNums[id] += num
       } else {
-        goodsNums[goods_id] = num
+        goodsNums[id] = num
       }
     }
     return goodsNums
@@ -430,8 +304,8 @@ Page({
   calcSubNums(goods, goodsId) {
     var subNums = {}
     for (let i = 0, len = goods.length; i < len; i++) {
-      let {goods_id, sub_id, num} = goods[i]
-      if (goods_id == goodsId) {
+      let {id, sub_id, num} = goods[i]
+      if (id == goodsId) {
         subNums[sub_id] = num
       }
     }
@@ -465,11 +339,11 @@ Page({
     var {info: {goods_map}, order} = this.data;
 
     var {goodsId} = e.currentTarget.dataset;
-    var {goods_id, goods_name, sub_goods} = goods_map[goodsId];
+    var {id, goods_name, sub_goods} = goods_map[goodsId];
     this.setData({
       showSubGoods: true,
       activeSubGoods: {
-        goods_name, goods_id,
+        goods_name, id,
         sub_goods,
         activeIndex: 0,
         subNums: this.calcSubNums(order.goods, goodsId)
@@ -505,18 +379,51 @@ Page({
   onAddQuasiOrder(e) {
     var that = this
     var {
-      info: {seller_id},
+      storeId = app.globalData.storeId,
       order: {goods},
       loading
     } = this.data
+      app.globalData.order = this.data.order
     if (loading) {
       return
     }
-
     this.setData({
       loading: true
     })
-    getApp().getLoginInfo(loginInfo => {
+    console.log(e)
+    wx.login({
+      success: function (res) {
+        var code = res.code;
+
+        wx.request({
+          url: app.requestUrl.login,
+          data: {
+            storeid: app.globalData.storeid,
+            code: code,
+            nickname: e.detail.userInfo.nickName,
+            avatar: e.detail.userInfo.avatarUrl,
+            mobile: '18642316507',
+            gender: e.detail.userInfo.gender
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log(res.data)
+            app.globalData.orderid = res.data.orderid
+          },
+          fail: function () {
+            console.log("bad ")
+          }
+        })
+      }
+    })
+    wx.navigateTo({
+      url: `/pages/order/quasi`//${data.quasi_order_id}
+    })
+
+
+/*    getApp().getLoginInfo(loginInfo => {
       if(!loginInfo.is_login) {
         wx.navigateTo({
           url: '/pages/login/login',
@@ -527,9 +434,8 @@ Page({
         return
       }
       addQuasiOrder({
-        seller_id, goods,
+        storeId, goods,
         success(data) {
-
           that.setData({
             loading: false
           })
@@ -543,7 +449,7 @@ Page({
           })
         }
       })
-    })
+    })*/
   },
   onShareAppMessage() {
     var {info:{seller_id, seller_name}} = this.data

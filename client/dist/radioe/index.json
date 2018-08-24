@@ -1,0 +1,10 @@
+{
+    "component": true,
+    "usingComponents":
+    {
+        "i-cell": "../cell/index",
+                "i-input": "../input/index",
+                    "i-col": "../../dist/col/index",
+                        "i-icon": "../../dist/icon/index"
+    }
+}

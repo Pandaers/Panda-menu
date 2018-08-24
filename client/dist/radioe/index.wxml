@@ -1,0 +1,15 @@
+<view class="i-class i-radio" catchtap="radioChange">
+    <i-cell i-class="i-radio-cell">
+        <label>
+          <view style="flex-direction:row;">
+
+                     <view class='input'>          
+                                               <i-input class="i-radio-title" value="{{value}}" title="{{options}}" bind:change='onchange' placeholder="在此输入选项" />
+                    </view>
+                              <view class='icon'>
+                               <i-icon type="delete_fill" size="30" color="#ed3f14" class="i-radio-radio {{positionCls}}" bindtap="handleTap"/>
+                               </view>
+         </view>
+        </label>
+    </i-cell>
+</view>

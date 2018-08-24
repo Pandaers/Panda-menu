@@ -20,7 +20,7 @@
 </view>
 <view wx:if="{{inputVal}}">
   <view class="search-list">
-    <template is="{{item.goods_id ? 'goods' : 'shop'}}" wx:for="{{list}}" wx:key="{{index}}" data="{{...item}}"></template>
+    <template is="{{item.id ? 'goods' : 'shop'}}" wx:for="{{list}}" wx:key="{{index}}" data="{{...item}}"></template>
   </view>
 
   <template is="load-more" data="{{loading: loading, hasMore: hasMore}}"></template>

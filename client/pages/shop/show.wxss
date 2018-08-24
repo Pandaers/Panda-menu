@@ -4,7 +4,9 @@
 @import './templates/goods-actions.wxss';
 @import './templates/cart-box.wxss';
 @import './templates/sub-goods.wxss';
-
+.i-tags{
+    margin:30px 5px 0 0;
+}
 .shop-show {
   display: flex;
   flex-direction: column;
