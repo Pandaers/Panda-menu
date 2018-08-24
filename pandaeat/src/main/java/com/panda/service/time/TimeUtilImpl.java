@@ -19,7 +19,7 @@ public class TimeUtilImpl implements TimeUtil {
     public String getNowTime() {
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("\"yyyy-MM-dd HH:mm:ss\"");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String nowtime = format.format(date);
         return nowtime;
     }

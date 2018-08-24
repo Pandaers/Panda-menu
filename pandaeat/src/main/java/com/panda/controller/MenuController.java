@@ -8,6 +8,7 @@ import com.panda.mapper.StoreMapper;
 import com.panda.model.Cat;
 import com.panda.model.Food;
 import com.panda.model.Store;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,12 +24,15 @@ public class MenuController {
     String storeid;
 
     //商家、菜品注入
+    @Autowired
     FoodMapper foodMapper;
+    @Autowired
     StoreMapper storeMapper;
+    @Autowired
     CatMapper catMapper;
 
     @RequestMapping(value = "/menu")
-    public ResponseEntity insertUser(String storeid){
+    public ResponseEntity getfoodmenu(String storeid){
 
         List<Food> foodList=foodMapper.selectFoodDateByStoreId(storeid);
         Store store =storeMapper.selcetStoreDateByStoreId(storeid);
@@ -36,7 +40,7 @@ public class MenuController {
         Map result = new HashMap();
 
         //菜品类别的int转name对应map
-        Map<Integer, String> catmap = catMapper.selectAllCatDate().stream().collect(Collectors.toMap(Cat::getCatid, Cat::getCatname));
+        Map<Integer, String> catmap = catMapper.selectAllCatData().stream().collect(Collectors.toMap(Cat::getCatid, Cat::getCatname));
 
         result.put("nickname",store.getNickname());
         result.put("avatar",store.getAvatar());
