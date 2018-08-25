@@ -1,5 +1,7 @@
 package com.panda.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.panda.common.response.RespCode;
 import com.panda.common.response.ResponseEntity;
 import com.panda.mapper.CatMapper;
@@ -48,33 +50,38 @@ public class MenuController {
         result.put("address",store.getAddress());
         result.put("selltime",store.getSelltime());
         result.put("foodscore",store.getFoodscore());
-        result.put("severscore",store.getServerscore());
+        result.put("severscore",store.getSeverscore());
         result.put("avescore",store.getAvescore());
         result.put("notice",store.getNotice());
 
         //按菜品类别进行分组，返回map的key=商品类别值，value=同商品类别的商品list
         Map<Integer, List<Food>> groupBy = foodList.stream().collect(Collectors.groupingBy(Food::getCatid));
-
+        Map goupMap = new HashMap();
         //对分组map遍历
         for(Map.Entry<Integer, List<Food>> entry:groupBy.entrySet()){
-            Map goupMap = new HashMap();
-            goupMap.put("catname",catmap.get(entry.getKey()));
-            Map goupTempMap = new HashMap();
-            List<Food> innerFoodList=entry.getValue();
 
+            goupMap.put("catname",catmap.get(entry.getKey()));
+
+            List<Food> innerFoodList=entry.getValue();
+            List goupTempMapList =new ArrayList();
             //对每个小组内list进行遍历，并插入到tempMap中
             for(Food list:innerFoodList){
+                Map goupTempMap = new HashMap();
                 goupTempMap.put("id",list.getId());
                 goupTempMap.put("avatar",list.getCompressimg());
                 goupTempMap.put("name",list.getName());
                 goupTempMap.put("virtualsales",list.getVirtualsales());
                 goupTempMap.put("price",list.getPrice());
                 goupTempMap.put("goodsnums",list.getGoodsnums());
+                goupTempMapList.add(goupTempMap);
             }
-            //tempMap插入result
-            goupMap.put("foods",innerFoodList);
-            result.put("menus",goupMap);
+            //解析list成数组格式的字符串并放入goupMap
+            String array= JSONArray.parseArray(JSON.toJSONString(goupTempMapList)).toString();
+            goupMap.put("foods",array);
+
         }
+        result.put("menus",goupMap);
+
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
     public String getStoreid() {

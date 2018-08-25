@@ -14,6 +14,9 @@ public class ResponseEntity {
         this(respCode);
         this.data = data;
     }
+    public ResponseEntity(){
+
+    }
 
     public int getCode() {
         return code;

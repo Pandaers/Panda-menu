@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 @Component(value = "foodMapper")
 public interface FoodMapper {
-    @Select("select * from pe_food where storeid=#{storeid} and status=1")
+    @Select("select * from pe_food where storeid=${storeid} and status=1")
     List<Food> selectFoodDateByStoreId(@Param("storeid") String storeid);
 
 }

@@ -9,7 +9,7 @@ public class Store {
     private String address;
     private String selltime;
     private Integer foodscore;
-    private Integer serverscore;
+    private Integer severscore;
     private Integer avescore;
     private String notice;
     private Integer ordernum;
@@ -48,12 +48,10 @@ public class Store {
         this.foodscore = foodscore;
     }
 
-    public Integer getServerscore() {
-        return serverscore;
-    }
+    public Integer getSeverscore() { return severscore; }
 
-    public void setServerscore(Integer serverscore) {
-        this.serverscore = serverscore;
+    public void setSeverscore(Integer severscore) {
+        this.severscore = severscore;
     }
 
     public Integer getAvescore() {

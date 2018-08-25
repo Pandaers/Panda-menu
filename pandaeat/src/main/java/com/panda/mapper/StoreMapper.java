@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
 @Component(value = "storeMapper")
 public interface StoreMapper {
 
-    @Select("select * from pe_store where storeid=#{storeid}")
+    @Select("select * from pe_store where storeid=${storeid}")
     Store selcetStoreDateByStoreId(@Param("storeid") String storeid);
 }
