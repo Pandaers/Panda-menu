@@ -33,7 +33,7 @@ public interface UserMapper {
     void insertUserData(@Param("user")User user);
 
     @Select("SELECT COUNT(openid) FROM pe_user WHERE openid=#{openid}")
-    int selectUersOpenId(@Param("openid")String openid);
+    Integer selectUersOpenId(@Param("openid")String openid);
 
     @Select("select * from pe_user where openid=#{openid} LIMIT 1")
     User selectUersDataByOpenId(@Param("openid")String openid);

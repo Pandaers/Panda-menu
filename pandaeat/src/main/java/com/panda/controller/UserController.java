@@ -42,7 +42,7 @@ public class UserController {
         //获取用户openid
 
         String openid  = wxApi.getOpenid(data.getCode());
-
+        System.out.println(openid);
         //做查询操作 看是否重复
         if(userMapper.selectUersOpenId(openid)!=0){
             Map result = new HashMap();

@@ -1,15 +1,13 @@
 package com.panda.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.panda.common.response.RespCode;
 import com.panda.common.response.ResponseEntity;
-import com.panda.mapper.CatMapper;
 import com.panda.mapper.FoodMapper;
 import com.panda.mapper.StoreMapper;
-import com.panda.model.Cat;
 import com.panda.model.Food;
 import com.panda.model.Store;
+import com.panda.service.getCatMap.GetCatMap;
+import com.panda.service.getCatMap.GetCatMapmpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +29,7 @@ public class MenuController {
     @Autowired
     StoreMapper storeMapper;
     @Autowired
-    CatMapper catMapper;
+    GetCatMap getCatMap;
 
     @RequestMapping(value = "/menu")
     public ResponseEntity getfoodmenu(String storeid){
@@ -41,8 +39,8 @@ public class MenuController {
         //要返回的result
         Map result = new HashMap();
 
-        //菜品类别的int转name对应map
-        Map<Integer, String> catmap = catMapper.selectAllCatData().stream().collect(Collectors.toMap(Cat::getCatid, Cat::getCatname));
+        //得到菜品名int转string对应map
+        Map<Integer, String> catmap = getCatMap.getCatMap();
 
         result.put("nickname",store.getNickname());
         result.put("avatar",store.getAvatar());
@@ -57,6 +55,7 @@ public class MenuController {
         //按菜品类别进行分组，返回map的key=商品类别值，value=同商品类别的商品list
         Map<Integer, List<Food>> groupBy = foodList.stream().collect(Collectors.groupingBy(Food::getCatid));
         List goupMapList =new ArrayList();
+
         //对分组map遍历
         for(Map.Entry<Integer, List<Food>> entry:groupBy.entrySet()){
             Map goupMap = new HashMap();
@@ -90,4 +89,5 @@ public class MenuController {
     public void setStoreid(String storeid) {
         this.storeid = storeid;
     }
+
 }
