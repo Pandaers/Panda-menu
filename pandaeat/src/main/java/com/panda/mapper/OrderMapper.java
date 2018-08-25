@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 //private short orderstatue;
 //private String endtime;
 //private short payway;
+
 public interface OrderMapper {
     @Insert("insert into pe_order (storeid,seatid,orderid,userid,createtime,ordercontent," +
             "orderprice,customernum,orderstatue,endtime,payway)" +

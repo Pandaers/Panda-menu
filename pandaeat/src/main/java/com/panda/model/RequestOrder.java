@@ -4,13 +4,31 @@ import java.util.Map;
 
 public class RequestOrder {
     String paywaystring;
-    Integer payway;
+    short payway;
     String seatid;
     String tips;
     String storeid;
     String userid;
     String  ordercontent;
     String orderprice;
+    Integer customernum;
+    short orderstatue;
+
+    public short getOrderstatue() {
+        return orderstatue;
+    }
+
+    public void setOrderstatue(short orderstatue) {
+        this.orderstatue = orderstatue;
+    }
+
+    public Integer getCustomernum() {
+        return customernum;
+    }
+
+    public void setCustomernum(Integer customernum) {
+        this.customernum = customernum;
+    }
 
     public String getPaywaystring() {
         return paywaystring;
@@ -20,11 +38,11 @@ public class RequestOrder {
         this.paywaystring = paywaystring;
     }
 
-    public Integer getPayway() {
+    public short getPayway() {
         return payway;
     }
 
-    public void setPayway(Integer payway) {
+    public void setPayway(short payway) {
         this.payway = payway;
     }
 

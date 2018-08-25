@@ -13,7 +13,21 @@ public class Order {
     private String endtime;
     private short payway;
 
+    public Order(Integer storeid, Integer seatid, Integer userid, String createtime, String ordercontent, String orderprice, Integer customernum, short orderstatue, String endtime, short payway) {
+        this.storeid = storeid;
+        this.seatid = seatid;
+        this.userid = userid;
+        this.createtime = createtime;
+        this.ordercontent = ordercontent;
+        this.orderprice = orderprice;
+        this.customernum = customernum;
+        this.orderstatue = orderstatue;
+        this.endtime = endtime;
+        this.payway = payway;
+    }
 
+    public Order() {
+    }
 
     public Integer getStoreid() {
         return storeid;
@@ -34,7 +48,6 @@ public class Order {
     public String getCreatetime() {
         return createtime;
     }
-
 
 
     public String getOrderprice() {
