@@ -6,7 +6,7 @@ public class Order {
     private Integer orderid;
     private Integer userid;
     private String createtime;
-    private Ordercontent ordercontent;
+    private String ordercontent;
     private String orderprice;
     private Integer customernum;
     private short orderstatue;
@@ -35,9 +35,7 @@ public class Order {
         return createtime;
     }
 
-    public Ordercontent getOrdercontent() {
-        return ordercontent;
-    }
+
 
     public String getOrderprice() {
         return orderprice;
@@ -79,7 +77,11 @@ public class Order {
         this.createtime = createtime;
     }
 
-    public void setOrdercontent(Ordercontent ordercontent) {
+    public String getOrdercontent() {
+        return ordercontent;
+    }
+
+    public void setOrdercontent(String ordercontent) {
         this.ordercontent = ordercontent;
     }
 

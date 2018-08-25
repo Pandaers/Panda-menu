@@ -12,5 +12,5 @@ import java.util.List;
 public interface CatMapper {
 
     @Select("select * from pe_cat")
-    List<Cat> selectAllCatDate();
+    List<Cat> selectAllCatData();
 }
