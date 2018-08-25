@@ -75,9 +75,8 @@ public class MenuController {
                 goupTempMap.put("goodsnums",list.getGoodsnums());
                 goupTempMapList.add(goupTempMap);
             }
-            //解析list成数组格式的字符串并放入goupMap
-            String array= JSONArray.parseArray(JSON.toJSONString(goupTempMapList)).toString();
-            goupMap.put("foods",array);
+            //临时list放入goupMap
+            goupMap.put("foods",goupTempMapList);
 
         }
         result.put("menus",goupMap);
