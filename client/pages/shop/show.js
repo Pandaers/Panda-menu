@@ -127,7 +127,27 @@ Page({
     var that = this
     var id = this.id;
     wx.showNavigationBarLoading()
-
+    wx.login({
+      success: function (res) {
+        var code = res.code;
+        wx.request({
+          url: app.requestUrl.menu,
+          data: {
+            storeid: app.globalData.storeid
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log(res.data)
+            that.setData({ info: res.data.data})
+          },
+          fail: function () {
+            console.log("bad ")
+          }
+        })
+      }
+    })
     /*getSellerInfo({
       seller_id: id,
       success(data) {
@@ -390,6 +410,8 @@ Page({
     this.setData({
       loading: true
     })
+    wx.navigateTo({
+      url: `/pages/order/quasi`})
     console.log(e)
     wx.login({
       success: function (res) {
@@ -410,7 +432,14 @@ Page({
           },
           success: function (res) {
             console.log(res.data)
-            app.globalData.orderid = res.data.orderid
+            this.setData({
+              loading: false
+            })
+            app.globalData.userid = res.data.userid
+            wx.navigateTo({
+              url: `/pages/order/quasi`//${data.quasi_order_id}
+            })
+
           },
           fail: function () {
             console.log("bad ")
@@ -418,9 +447,7 @@ Page({
         })
       }
     })
-    wx.navigateTo({
-      url: `/pages/order/quasi`//${data.quasi_order_id}
-    })
+
 
 
 /*    getApp().getLoginInfo(loginInfo => {
