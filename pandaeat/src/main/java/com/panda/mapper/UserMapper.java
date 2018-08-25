@@ -35,8 +35,8 @@ public interface UserMapper {
     @Select("SELECT COUNT(openid) FROM pe_user WHERE openid=#{openid}")
     int selectUersOpenId(@Param("openid")String openid);
 
-    @Select("select * from pe_user where openid='#{openid}' LIMIT 1")
-    User selectUersDataByOpenId(String openid);
+    @Select("select * from pe_user where openid=#{openid} LIMIT 1")
+    User selectUersDataByOpenId(@Param("openid")String openid);
 
 
 
