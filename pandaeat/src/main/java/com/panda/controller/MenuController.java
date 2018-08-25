@@ -56,10 +56,10 @@ public class MenuController {
 
         //按菜品类别进行分组，返回map的key=商品类别值，value=同商品类别的商品list
         Map<Integer, List<Food>> groupBy = foodList.stream().collect(Collectors.groupingBy(Food::getCatid));
-        Map goupMap = new HashMap();
+        List goupMapList =new ArrayList();
         //对分组map遍历
         for(Map.Entry<Integer, List<Food>> entry:groupBy.entrySet()){
-
+            Map goupMap = new HashMap();
             goupMap.put("catname",catmap.get(entry.getKey()));
 
             List<Food> innerFoodList=entry.getValue();
@@ -77,9 +77,9 @@ public class MenuController {
             }
             //临时list放入goupMap
             goupMap.put("foods",goupTempMapList);
-
+            goupMapList.add(goupMap);
         }
-        result.put("menus",goupMap);
+        result.put("menus",goupMapList);
 
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
