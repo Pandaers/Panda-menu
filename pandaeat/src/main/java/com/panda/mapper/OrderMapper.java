@@ -1,10 +1,14 @@
 package com.panda.mapper;
 
 import com.panda.model.Order;
+import com.panda.model.OrderForCMS;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Mapper
 @Component(value = "orderMapper")
@@ -27,4 +31,8 @@ public interface OrderMapper {
             "#{order.createtime},#{order.ordercontent},#{order.orderprice},#{order.customernum}," +
             "#{order.orderstatue},#{order.endtime},#{order.payway})")
     void insertOrder(@Param("order") Order order);
+
+    @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime from pe_order where dishstatue=0 or orderstatue!=3 order by createtime desc")
+    List<OrderForCMS> selectOrderForCMS();
 }
+

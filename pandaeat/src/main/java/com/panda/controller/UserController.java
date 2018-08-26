@@ -36,6 +36,7 @@ public class UserController {
     //微信官方接口处理
     @Autowired
     WxApi wxApi;
+    User user;
 
     @RequestMapping(value = "/login")
     public ResponseEntity insertUser(RequestUser data){
@@ -54,8 +55,15 @@ public class UserController {
         }
 
         //拟合要插入的数据
-        User user = new User(Integer.parseInt(data.getStoreid()),0,openid,timeUtil.getNowTime(),data.getNickname()
-                ,data.getAvatar(),data.getMobile(),Short.parseShort(data.getGender()),0,"0");
+        try{
+            User user = new User(Integer.parseInt(data.getStoreid()),0,openid,timeUtil.getNowTime(),data.getNickname()
+                    ,data.getAvatar(),data.getMobile(),Short.parseShort(data.getGender()),0,"0");
+        }
+        catch (NumberFormatException e){
+            System.out.println("数字格式错误");
+            return new ResponseEntity(RespCode.WARN);
+        }
+
 
         userMapper.insertUserData(user);
 

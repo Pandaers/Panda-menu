@@ -12,8 +12,11 @@ public class Order {
     private short orderstatue;
     private String endtime;
     private short payway;
+    private String tips;
+    private short dishstatue;
 
-    public Order(Integer storeid, Integer seatid, Integer userid, String createtime, String ordercontent, String orderprice, Integer customernum, short orderstatue, String endtime, short payway) {
+
+    public Order(Integer storeid, Integer seatid, Integer userid, String createtime, String ordercontent, String orderprice, Integer customernum, short orderstatue, String endtime, short payway,String tips) {
         this.storeid = storeid;
         this.seatid = seatid;
         this.userid = userid;
@@ -24,6 +27,23 @@ public class Order {
         this.orderstatue = orderstatue;
         this.endtime = endtime;
         this.payway = payway;
+        this.tips=tips;
+    }
+
+    public String getTips() {
+        return tips;
+    }
+
+    public void setTips(String tips) {
+        this.tips = tips;
+    }
+
+    public short getDishstatue() {
+        return dishstatue;
+    }
+
+    public void setDishstatue(short dishstatue) {
+        this.dishstatue = dishstatue;
     }
 
     public Order() {
