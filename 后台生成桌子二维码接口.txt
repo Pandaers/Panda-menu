@@ -1,0 +1,18 @@
+AppID(小程序ID) wx955d8d61806b3390
+AppSecret(小程序密钥) ccdc310b68b14908fb028acd97f07b31
+
+
+获取TOKEN(GET)
+TOKEN = https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx955d8d61806b3390&secret=ccdc310b68b14908fb028acd97f07b31
+
+生成桌子座位号二维码(POST)
+https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=TOKEN
+
+参数(JSON)：
+data: { 'path': "/pages/SHOP/SHOP?seatid=1", 'width': 430 }
+
+Header：
+'content-type': 'application/json'
+
+返回二维码图片
+
