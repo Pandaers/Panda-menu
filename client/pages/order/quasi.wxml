@@ -29,9 +29,15 @@
 </i-panel>
 
   <i-panel>
-<i-cell title="座位号" bindtap='onChangePayway' value="{{finalorder.seatid}}" disabled>
+<i-cell title="座位号" value="{{finalorder.seatid}}" disabled>
 </i-cell>
 </i-panel>
+  <i-panel>
+<i-cell title="就餐人数">
+<input slot="footer" bind:change='onNumberChange' type="number" value="4" placeholder="请输入人数"/>
+</i-cell>
+</i-panel>
+
   </view>
 
   <view class="quasi-goods">

@@ -35,6 +35,9 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
+  onNumberChange: function (e) {
+    this.data.finalorder.customernum = e.detail.value
+  },
   loadData() {
     var that = this
     var {id} = this
@@ -51,6 +54,8 @@ Page({
         payway: 3,
         seatid: app.globalData.seatid,
         tips: '',
+        customernum:4,
+        orderstatue:0,
         storeid: app.globalData.storeid,
         userid: app.globalData.userid,
         ordercontent: app.globalData.order.goodsNums,
