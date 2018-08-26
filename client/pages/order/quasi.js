@@ -1,9 +1,5 @@
 // pages/order/quasi.js
 var app=getApp()
-import {
-  getQuasiOrderInfo, updateOrderAddr, updateOrderCoupon,
-  addOrder, getPayment
-} from '../../utils/apis'
 
 import {
   alert,
@@ -63,22 +59,6 @@ Page({
       }
     })
     wx.showNavigationBarLoading()
-    getQuasiOrderInfo({
-      quasi_order_id: id,
-      success(data) {
-        data['cut_money_total'] = +data.cut_money + +data.coupon_money
-
-        that.setData({
-          info: data,
-          loading: false
-        })
-        wx.hideNavigationBarLoading()
-      },
-      error() {
-        wx.hideNavigationBarLoading()
-      }
-    })
-    
   },
   callbackAddress(addr_id) {
     var that = this
@@ -150,12 +130,16 @@ Page({
     this.setData({
       loading: true
     })
+    //temp
+    wx.navigateTo({
+      url: `/pages/over/over`
+    })
     wx.login({
       success: function (res) {
         var code = res.code;
         console.log(code)
         wx.request({
-          url: app.requestUrl.login,
+          url: app.requestUrls.login,
           data: {
             order:that.data.finalorder,
             code: code

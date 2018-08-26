@@ -2,11 +2,11 @@
  * 小程序配置文件
  */
 
-// var host = "apitest.ipaotui.com"
-var host = "api.ipaotui.com"
+// var host = "https://www.hcyang.top"
+var host = "https://www.hcyang.top"
 const debug = wx.getStorageSync('debug')
 if (debug) {
-    host = "apitest.ipaotui.com"
+  host = "https://www.hcyang.top"
 }
 
 

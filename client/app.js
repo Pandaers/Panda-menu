@@ -112,7 +112,7 @@ App({
     orderid:"00100"
 
   },
-  requestUrl:{
+  requestUrls:{
     login:"https://www.hcyang.top/login",
     menu:"https://www.hcyang.top/menu"
   }

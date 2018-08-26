@@ -5,10 +5,7 @@ import {
   datetimeFormat
 } from '../../utils/util'
 
-import {
-  getSellerInfo,
-  getReviews, addQuasiOrder
-} from '../../utils/apis'
+
 //import js end
 var app = getApp()
 //import app
@@ -107,7 +104,6 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    this.id = options.id || 2
     this.loadData()
   },
   onReady: function () {
@@ -131,7 +127,7 @@ Page({
       success: function (res) {
         var code = res.code;
         wx.request({
-          url: app.requestUrl.menu,
+          url: app.requestUrls.menu,
           data: {
             storeid: app.globalData.storeid
           },
@@ -410,15 +406,16 @@ Page({
     this.setData({
       loading: true
     })
+    //temp
     wx.navigateTo({
-      url: `/pages/order/quasi`})
-    console.log(e)
+      url: `/pages/order/quasi`
+    })
     wx.login({
       success: function (res) {
         var code = res.code;
 
         wx.request({
-          url: app.requestUrl.login,
+          url: app.requestUrls.login,
           data: {
             storeid: app.globalData.storeid,
             code: code,
@@ -432,12 +429,12 @@ Page({
           },
           success: function (res) {
             console.log(res.data)
-            this.setData({
+            that.setData({
               loading: false
             })
             app.globalData.userid = res.data.userid
             wx.navigateTo({
-              url: `/pages/order/quasi`//${data.quasi_order_id}
+              url: `/pages/order/quasi`
             })
 
           },
@@ -447,36 +444,6 @@ Page({
         })
       }
     })
-
-
-
-/*    getApp().getLoginInfo(loginInfo => {
-      if(!loginInfo.is_login) {
-        wx.navigateTo({
-          url: '/pages/login/login',
-        })
-        this.setData({
-          loading: false
-        })
-        return
-      }
-      addQuasiOrder({
-        storeId, goods,
-        success(data) {
-          that.setData({
-            loading: false
-          })
-          wx.navigateTo({
-            url: `/pages/order/quasi?id=${data.quasi_order_id}`
-          })
-        },
-        error() {
-          that.setData({
-            loading: false
-          })
-        }
-      })
-    })*/
   },
   onShareAppMessage() {
     var {info:{seller_id, seller_name}} = this.data

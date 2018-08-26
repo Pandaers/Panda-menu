@@ -1,0 +1,57 @@
+
+<i-message id="message" />
+
+<view class='pading'>
+<i-row>
+<icon class="icon-box-img" type="success" size="150"></icon>
+</i-row>
+<i-row>
+<text class='caption' >点菜成功，祝您用餐愉快</text>
+</i-row>
+<i-row>
+<i-icon type="task" size="28" color="#ff5801"></i-icon>
+<text class='h1' >订单号：{{returnorder.orderid}}</text>
+</i-row>
+</view>
+
+
+<i-card title="订单详情">
+    <view slot="content">
+    
+
+  <view class="quasi-goods__bd">
+      <view class="quasi-goods__list">
+        <view wx:for="{{goods}}" wx:key="{{index}}" class="quasi-goods__item">
+          <view class="quasi-goods__item-name">{{item.name}}</view>
+          <view class="quasi-goods__item-singlePrice">单价：¥{{item.price}}</view>
+          <view class="quasi-goods__item-num">x{{item.num}}</view>
+          <view class="quasi-goods__item-price">¥{{item.num * item.price}}</view>
+        </view>
+      </view>
+
+      <view class="quasi-goods__list">
+        <view class="quasi-goods__item">
+          <view class="quasi-goods__item-name quasi-goods__item-name_grey">
+            总计¥{{order.totalGoodsPrice}} <text wx:if="{{info.cut_money_total > 0}}">优惠¥{{info.cut_money_total}}</text>
+          </view>
+          <view class="quasi-goods__item-num"></view>
+          <view class="quasi-goods__item-price primary-color">
+            待支付 ¥{{order.totalPrice}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+    
+    </view>
+
+    <view slot="footer">
+    <i-icon type="time" size="20" color="#ff5801"></i-icon>
+    订餐时间：{{returnorder.createtime}}
+    </view>
+
+</i-card>
+
+
+      <i-button bind:click="onAddFoods" inline type="success">加菜</i-button>
+     

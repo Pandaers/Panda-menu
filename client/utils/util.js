@@ -211,14 +211,7 @@ export function fetch(options) {
 }
 
 // 提示框
-export function alert(content, callback) {
-  wx.showModal({
-    title: '提示',
-    content: content,
-    showCancel: false,
-    success: callback
-  })
-}
+
 // 确认框
 export function confirm(options) {
   var {
@@ -227,16 +220,6 @@ export function confirm(options) {
   } = options
   confirmText = confirmText || '确定'
   cancelText = cancelText || '关闭'
-  wx.showModal({
-    content,
-    confirmText,
-    cancelText,
-    success(res) {
-      if (res.confirm) {
-        ok && ok()
-      }
-    }
-  })
 }
 
 // 拨打电话
