@@ -42,7 +42,7 @@
           </a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">首页</a>
+          <a href="../../index3.html" class="nav-link">首页</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">联系</a>
@@ -74,7 +74,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="../../index3.html" class="brand-link">
         <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Panda Eat</span>
       </a>
@@ -96,8 +96,8 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+            <li class="nav-item has-treeview ">
+              <a href="#" class="nav-link ">
                 <i class="nav-icon fa fa-dashboard"></i>
                 <p>
                   概况
@@ -106,7 +106,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
+                  <a href="../../index.html" class="nav-link active">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>销售情况</p>
                   </a>
@@ -117,7 +117,7 @@
 
             <!-- 菜单 -->
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link active">
                 <i class="nav-icon fa fa-th"></i>
                 <p>
                   菜单管理
@@ -131,7 +131,7 @@
                     <p>菜品管理</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item menu-open">
                   <a href="../food/catlist.html" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>分类管理</p>
@@ -177,7 +177,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../store/store.html" class="nav-link">
+                  <a href="../user/user.html" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>客户管理</p>
                   </a>
@@ -197,7 +197,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../wxmange/wxmange.html" class="nav-link">
+                  <a href="../store/store.html" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>商户信息管理</p>
                   </a>
@@ -217,7 +217,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../order/order.html" class="nav-link">
+                  <a href="../wxmange/wxmange.html" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>微信小程序管理</p>
                   </a>
@@ -245,15 +245,15 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">概况</h1>
+              <h1 class="m-0 text-dark">菜品分类</h1>
             </div>
             <!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item">
-                  <a href="#">概况</a>
+                  <a href="#">菜单管理</a>
                 </li>
-                <li class="breadcrumb-item active">销售情况</li>
+                <li class="breadcrumb-item active">菜品分类</li>
               </ol>
             </div>
             <!-- /.col -->
@@ -264,31 +264,136 @@
       </div>
       <!-- /.content-header -->
 
-      大撒大撒
+      <!-- SEARCH FORM -->
+      <div style="width:70%; margin-left:15%;">
+        <section class="content">
 
 
+          <div class="card card-primary" id="addcart" style="display:none;">
+            <div class="card-header">
+              <h3 class="card-title">添加菜品分类</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+
+            <div class="card-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">分类名称</label>
+                <input type="text" class="form-control" maxlength="20" id="cartname" placeholder="水果">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">分类备注</label>
+                <input type="text" class="form-control" id="carttips" placeholder="对苹果等水果的分类">
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary" onclick="addfoodcart()">添加</button>
+            </div>
+          </div>
 
 
-      <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2017-2018
-        <a href="#">Panda Eat</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0.0-alpha
+          <div class="foodcatlist" id="cartlist" >
+            <div class="">
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h3 class="card-title">菜品分类</h3>
+                  <div class="card-tools">
+
+                  </div>
+                  <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="mailbox-controls">
+                    <!-- Check all button -->
+                    <button type="button" class="btn btn-default btn-sm "><i class="fa fa-upload" onclick="toaddcart()"></i>
+                    </button>
+                    <!-- /.btn-group -->
+                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh" onclick="refreshdata()"></i></button>
+                    <!-- /.float-right -->
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr>
+                          <td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
+                          <td class="mailbox-name">水果</td>
+                          <td class="mailbox-subject">西瓜、橙子、茄子
+                          </td>
+                          <td class="mailbox-attachment"></td>
+                          <td class="mailbox-date">2018-9-10</td>
+                          <td>  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o" onclick="delecart()"></i></button></td>
+
+                        </tr>
+                        <tr>
+                          <td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
+                          <td class="mailbox-name">水果</td>
+                          <td class="mailbox-subject">西瓜、橙子、茄子
+                          </td>
+                          <td class="mailbox-attachment"></td>
+                          <td class="mailbox-date">2018-9-10</td>
+                          <td>  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o" onclick="delecart()"></i></button></td>
+
+                        </tr>
+                        <tr>
+                          <td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
+                          <td class="mailbox-name">水果</td>
+                          <td class="mailbox-subject">西瓜、橙子、茄子
+                          </td>
+                          <td class="mailbox-attachment"></td>
+                          <td class="mailbox-date">2018-9-10</td>
+                          <td>  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o" onclick="delecart()"></i></button></td>
+                        </tr>
+                        <tr>
+                          
+                          <td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
+                          <td class="mailbox-name">水果</td>
+                          <td class="mailbox-subject">西瓜、橙子、茄子
+                          </td>
+                          <td class="mailbox-attachment"></td>
+                          <td class="mailbox-date">2018-9-10</td>
+                          <td>  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o" onclick="delecart()"></i></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- /.table -->
+                  </div>
+                  <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.card-body -->
+
+              </div>
+            </div>
+            <!-- /. box -->
+          </div>
+
       </div>
-    </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+      </section>
+    </div>
+
+
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2017-2018
+      <a href="#">Panda Eat</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.0.0-alpha
+    </div>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
-
+  <script src="../../config.js"></script>
+  <script src="cartlist.js"></script>
   <!-- jQuery -->
   <script src="../../plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -323,7 +428,7 @@
   <!-- AdminLTE App -->
   <script src="../../dist/js/adminlte.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="../../dist/js/../dashboard.js"></script>
+  <!-- <script src="../../dist/js/dashboard.js"></script> -->
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
 </body>
