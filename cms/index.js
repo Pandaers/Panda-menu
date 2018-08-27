@@ -53,4 +53,9 @@ window.onload = function () {
     $("#newincome").text(data.show.newordernum); 
 
 
+    $.get(url.getindexdata+0,function(data,status){
+        console.log(data)
+      });
+
+
 };

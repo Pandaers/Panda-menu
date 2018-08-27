@@ -39,13 +39,13 @@ spring:
 #    schema:
 #      - classpath:department.sql
 
-server:
-  port: 443
-  ssl:
-    key-store: classpath:214576818110011.pfx
-    key-store-password: 214576818110011
-    key-store-type: PKCS12
 #server:
-#  port: 8080
+#  port: 443
+#  ssl:
+#    key-store: classpath:214576818110011.pfx
+#    key-store-password: 214576818110011
+#    key-store-type: PKCS12
+server:
+  port: 8080
   tomcat:
    max-http-post-size: 104857600
