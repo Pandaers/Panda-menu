@@ -19,7 +19,7 @@ public class OrderForCMSController {
     Integer currentPage;
 
 
-    @RequestMapping(value = "CMS/order")
+    @RequestMapping(value = "CMS/pendingOrder")
     public ResponseEntity selectOrderListForCMS(Integer currentPage){
         List<OrderForCMS> result = new ArrayList();
         PageHelper.startPage(currentPage, 20);
