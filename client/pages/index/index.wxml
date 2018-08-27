@@ -1,26 +1,196 @@
+<import src="/templates/star-rate.wxml" />
 <import src="/templates/load-more.wxml" />
-<import src="templates/shop.wxml" />
+<import src="templates/goods-actions.wxml" />
+<import src="templates/cart-box.wxml" />
+<import src="templates/sub-goods.wxml" />
 
-<!--index.wxml-->
-<view class="topbar">
-  <navigator url="./address?callback=callback" class="address trangle">
-    <image class="address__icon" src="/images/location.png"></image>{{currentAddress ? currentAddress.title : '定位中...'}}
-  </navigator>
-  <navigator url="./search" class="search">
-    <icon type="search" size="20" /> 搜索
-  </navigator>
-</view>
-<view class="category">
-  <navigator class="category__item" url="/pages/index/category?id={{item.category_id}}" wx:for="{{category}}" wx:key="category_id">
-    <view>
-      <image src="{{item.icon}}" class="category__icon"></image>
+
+
+
+<!--pages/shop/show.wxml-->
+<view class="shop-show">
+  <view class="shop-info weui-panel weui-panel_access">
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+
+
+          <image class="weui-media-box__thumb shop-info__pic" src="{{info.avatar}}" />
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+
+
+
+<i-row>
+    <view class="weui-media-box__title">{{info.nickname}}</view>
+</i-row>
+
+<i-row>
+<view class="weui-media-box__desc shop-info__desc">
+      公告: {{info.notice}}
+          </view>
+</i-row>
+<i-row>
+<view class="weui-media-box__desc shop-info__desc">
+      地址: {{info.address}}
+                </view>
+</i-row>
+
+          
+
+
+
+        </view>
+      </view>
+      <view wx:if="{{info.promotion && info.promotion.length > 0}}" class="promotion">
+        <swiper class="promotion-swiper" vertical="true" autoplay="true" interval="5000">
+          <swiper-item wx:key="index" wx:for="{{info.promotion}}" class="promotion-item">
+            <image class="promotion-item__icon" src="{{item.avatar}}"></image>
+            <text>{{item.info}}</text>
+          </swiper-item>
+        </swiper>
+        <view class="promotion-total">
+          {{info.promotion.length}}个活动
+        </view>
+      </view>
     </view>
-    {{item.title}}
-  </navigator>
-</view>
-<view class="weui-panel weui-panel_access">
-  <view class="weui-panel__bd shop__list">
-    <template is="shop" wx:for="{{shopList}}" wx:key="{{seller_id}}" data="{{...item}}"></template>
+  </view>
+  <view class="shop-content">
+    <view class=" weui-tab weui-tab_shop">
+      <view class="weui-navbar">
+        <view wx:for="{{tabs}}" wx:key="*this" id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+          <view class="weui-navbar__title">{{item}}</view>
+        </view>
+      </view>
+      <swiper bindchange="swiperChange" current="{{activeIndex}}" autoplay="{{false}}" class="weui-tab__panel">
+        <swiper-item class="weui-tab__content menu-tab">
+          <view class="menu-content weui-flex">
+            <view class="menu-list">
+              <view bindtap="menuClick" id="{{index}}" class="menu-item {{index == activeMenuIndex ? 'menu-item_active' : ''}} " wx:for="{{info.menus}}" wx:key="menu_id">
+                {{item.catname}}
+              </view>
+            </view>
+            <view wx:if="{{info.menus && info.menus[activeMenuIndex]}}" class="goods-list weui-flex__item">
+              <view class="goods-list__label">
+                {{info.menus[activeMenuIndex].catname}}
+              </view>
+              <view wx:for="{{info.menus[activeMenuIndex].foods}}" wx:key="id" class="goods-item weui-flex">
+                <image class="goods-item__pic" src="{{item.avatar}}"></image>
+                <view class="weui-flex__item">
+                  <view class="goods-item__name">{{item.name}}</view>
+                  <view class="goods-item__desc text-small grey-color">月售{{item.virtualsales}}份</view>
+                  <view class="goods-item__price primary-color text-large">¥{{item.price}}</view>
+                  <view class="goods-item__actions">
+                    <view data-goods-id="{{item.id}}" bindtap="showSubGoods" wx:if="{{item.sub_goods && item.sub_goods.length > 0}}" class="goods-item__sub-goods">
+                      选规格
+                      <view wx:if="{{order['goodsNums'][item.id] > 0}}" class="weui-badge goods-item__sub-goods-badge">{{order['goodsNums'][item.id]}}</view>
+                    </view>
+                    <template is="goods-actions" data="{{id: item.id, num: order['goodsNums'][item.id]}}" wx:else />
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="menu-cart weui-flex">
+            <view bindtap="toggleCart" class="weui-flex__item menu-cart__content weui-flex">
+              <view wx:if="{{!showCart}}" class="menu-cart__badge-wrap">
+                <image class="menu-cart__icon" src="{{order.totalNum > 0 ? '/images/cart-full@2x.png': '/images/cart-empty@2x.png'}}"></image>
+                <view wx:if="{{order.totalNum > 0}}" class="weui-badge menu-cart__badge">{{order.totalNum}}</view>
+              </view>
+              <view class="weui-flex__item menu-cart__price-wrap">
+                <view class="menu-cart__price" wx:if="{{order.totalPrice > 0}}">¥{{order.totalPrice}}</view>
+       <view class="menu-cart__price" wx:if="{{!order.totalPrice || order.totalPrice<=0}}">您还没有点菜哦</view>
+
+                <view class="text-small grey-color">您已经点了{{order.totalNum}}份菜</view>
+              </view>
+            </view>
+            <button disabled="{{loading}}" loading="{{loading}}" class="weui-btn menu-cart__btn" type="primary" bindgetuserinfo='onAddQuasiOrder' open-type='getUserInfo'>
+              选好了
+            </button>
+          </view>
+        </swiper-item>
+        <swiper-item class="weui-tab__content weui-tab__content_review">
+          <scroll-view class="scroll-view_review" enable-back-to-top="true" bindscrolltolower="onScrolltolower" scroll-y="true">
+            <view class="shop-rate">
+              <view class="shop-rate__overall">
+                <view class="shop-rate__overall-num">{{info.avescore}}</view>
+                <view class="classname">综合评分</view>
+              </view>
+              <view class="shop-rate__score">
+                <view class="shop-rate__score-item">
+                  <view class="shop-rate__score-item-label">菜品</view>
+                          <i-rate 
+            bind:change="onChange2" 
+            value="{{info.foodscore}}" 
+            size="28">
+        </i-rate>
+
+                </view>
+                <view class="shop-rate__score-item">
+                  <view class="shop-rate__score-item-label">服务</view>
+                          <i-rate 
+            bind:change="onChange2" 
+            value="{{info.severscore}}" 
+            size="28">
+        </i-rate>
+                </view>
+              </view>
+            </view>
+            <view class="shop-review">
+              <view class="review-list">
+                <view wx:for="{{review.list}}" wx:key="{{index}}" class="review-item">
+                  <view class="">
+                    <image class="review-item__head-img" src="{{item.head_pic || '/images/default-image.png'}}"></image>
+                  </view>
+                  <view class="review-item__content">
+                    <view class="review-item__hd">
+                      <view class="review-item__add-time">{{item.timeFormat}}</view>
+                      <view class="review-item__nick">{{item.nick}}</view>
+                      <view class="weui-flex">
+                        <template is="star-rate" data="{{value: item.quality, mini: true}}"></template>
+                        <view class="review-item__reach-time text-small grey-color">及时到达</view>
+                      </view>
+                    </view>
+                    <view class="review-item__bd">
+                      {{item.content}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <template is="load-more" data="{{loading: review.loading, hasMore: review.hasMore}}"></template>
+          </scroll-view>    
+        </swiper-item>
+
+
+
+        
+        <swiper-item class="weui-tab__content weui-tab__content_info">
+
+          
+<i-panel class="cell-panel-demo" title="商家信息">
+    <i-cell title="{{info.address}}" value="详细信息">
+        <i-icon type="coordinates" color='#ff5801' size="28" slot="icon" />
+    </i-cell>
+</i-panel>
+<i-panel class="cell-panel-demo" title="  ">
+    <i-cell title="{{info.mobile}}" bindtap="onPhoneTap" value="拨打电话">
+        <i-icon type="mobilephone" size="28" color='#ff5801' slot="icon" />
+    </i-cell>
+    <i-cell title="营业时间：{{info.selltime}}">
+        <i-icon type="time" size="26" color='#ff5801' slot="icon" />
+    </i-cell>
+</i-panel>
+<i-panel class="cell-panel-demo" title="商家公告">
+        <i-cell title="{{info.notice}}">
+    </i-cell>
+</i-panel>
+
+
+        </swiper-item>
+      </swiper>
+    </view>
   </view>
 </view>
-<template is="load-more" data="{{loading: loading, hasMore: hasMore, noMoreLabel: '更多商家接入中, 敬请期待'}}"></template>
+<template wx:if="{{showCart}}" is="cart-box" data="{{...order}}" />
+<template is="sub-goods" wx:if="{{showSubGoods}}" data="{{...activeSubGoods}}" />
