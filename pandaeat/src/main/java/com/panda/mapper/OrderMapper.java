@@ -2,10 +2,7 @@ package com.panda.mapper;
 
 import com.panda.model.Order;
 import com.panda.model.OrderForCMS;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -32,7 +29,30 @@ public interface OrderMapper {
             "#{order.orderstatue},#{order.endtime},#{order.payway})")
     void insertOrder(@Param("order") Order order);
 
-    @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime from pe_order where dishstatue=0 or orderstatue!=3 order by createtime desc")
+    /*
+    * 选择未处理和未上菜的订单，按时间倒序
+    * */
+    @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime,endtime from " +
+            "pe_order where delstatue=0 and (dishstatue=0 or orderstatue!=3) order by createtime desc")
     List<OrderForCMS> selectOrderForCMS();
+
+    /*
+    * 选择出所有订单，按时间倒序
+    * */
+    @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime,endtime from " +
+            "pe_order  where delstatue=0 order by createtime desc")
+    List<OrderForCMS> selectAllOrderForCMS();
+
+    /*
+     * 选择出所需单个订单所有信息
+     * */
+    @Select("select * from pe_order where orderid=#{orderid} order by createtime desc limit 1")
+    OrderForCMS selectSingleOrderForCMS(@Param("orderid") Integer orderid);
+
+    @Select("SELECT COUNT(*) FROM pe_order WHERE orderid=#{orderid} and delstatue=0")
+    Integer countOrderByOrderid(@Param("orderid") Integer orderid);
+
+    @Update("update pe_order set delstatue=1, endtime=#{endtime} where orderid=#{orderid}")
+    void delOrderByOrderid(@Param("orderid") Integer orderid,@Param("endtime") String endtime);
 }
 

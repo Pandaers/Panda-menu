@@ -14,6 +14,7 @@ public class Order {
     private short payway;
     private String tips;
     private short dishstatue;
+    private short delstatue;
 
 
     public Order(Integer storeid, Integer seatid, Integer userid, String createtime, String ordercontent, String orderprice, Integer customernum, short orderstatue, String endtime, short payway,String tips) {
@@ -28,6 +29,14 @@ public class Order {
         this.endtime = endtime;
         this.payway = payway;
         this.tips=tips;
+    }
+
+    public short getDelstatue() {
+        return delstatue;
+    }
+
+    public void setDelstatue(short delstatue) {
+        this.delstatue = delstatue;
     }
 
     public String getTips() {
