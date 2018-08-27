@@ -5,7 +5,6 @@
     "pages/order/show",
     "pages/over/over",
     "pages/order/list",
-    "pages/order/content",
     "pages/order/review"
   ],
   "window": {

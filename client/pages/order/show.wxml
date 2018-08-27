@@ -1,159 +1,100 @@
-<!--pages/order/show.wxml-->
-<view class="order-show-tab tab">
-  <view class="tab__navbar">
-    <view bindtap="navChange" id="{{index}}" wx:for="{{tabNavs}}" wx:key="{{index}}" class="tab__navbar-item {{index == activeNavIndex?  'tab__navbar-item_active': ''}} ">
-      订单状态
-    </view>
-    <view bindtap="onPhoneTap" class="phone">
-      <image class="phone__icon" src="/images/chat_phone_normal.png"></image>
+
+<!--pages/order/quasi.wxml-->
+<view class="quasi">
+  <view wx:if="{{info}}" class="weui-panel weui-panel_address ">
+    <view  class="weui-panel__bd ">
+      <navigator wx:if="{{info.receiver_addr_id}}" url="/pages/address/select?callback=callbackAddress&id={{info.receiver_addr_id}}" class="weui-media-box weui-media-box_text weui-cell__ft_in-access weui-media-box_address">
+        <view class="weui-media-box__title weui-media-box__title_in-text">{{info.receiver}} {{info.receiver_phone}}</view>
+        <view class="weui-media-box__desc">
+          {{info.receiver_addr}}
+        </view>
+      </navigator>
+      <navigator wx:else url="/pages/address/select?callback=callbackAddress" class=" weui-media-box weui-media-box_text weui-cell__ft_in-access weui-media-box_address primary-color text-large">
+        选择收货地址
+      </navigator>
     </view>
   </view>
-  <swiper bindchange="tabChange" current="{{activeNavIndex}}" class="tab-swiper" autoplay="{{false}}">
-    <swiper-item class="tab__swiper-item">
-      <view class="flow-list">
-        <view wx:for="{{info.flow}}" wx:key="{{index}}" class="flow-item">
-          {{item.status}}
-          <image wx:if="{{item.state == info.state}}" src="{{statusImgs[item.state]}}" class="flow-item__img"></image>
-          <view class="flow-item__time">{{item.time_format}}</view>
-        </view>
-      </view>
-      <view wx:if="{{info.left_time > 0}}" class="order-show__left-time">
-        <text wx:if="{{info.state == 1}}">支付剩余时间</text>
-        <text wx:elif="{{info.state == 2}}">等待商家接单</text>
-        <text class="primary-color order-show__left-time-label">{{countLabel}}</text>
-      </view>
-      <view wx:if="{{info.state <= 2 || (info.state == 4 && info.is_reviews == 0)}}" class="actionbar">
-        <button bindtap="onCancelTap" wx:if="{{info.state <= 2}}" class="weui-btn actionbar-btn actionbar-btn_action">取消订单</button>
-        <button loading="{{loading}}" disabled="{{loading}}" bindtap="onPayTap" wx:if="{{info.state == 1}}" class="weui-btn actionbar-btn actionbar-btn_action actionbar-btn_primary" type="primary">立即付款</button>
-        <navigator url="/pages/order/review?id={{info.order_id}}" wx:if="{{info.state == 4 && info.is_reviews == 0}}" class="actionbar-btn actionbar-btn_action actionbar-btn_primary">评价</navigator>
-      </view>
-    </swiper-item>
-    <swiper-item class="tab__swiper-item tab__swiper-item_detail">
-      <view class="weui-cells__title">订单详情</view>
-      <view class="quasi-goods">
-        <view class="quasi-goods__hd weui-flex">
-          <view>
-            <image class="quasi-goods__img" src="/images/shop-512.png"></image>
-            {{info.seller_name}}
-          </view>
-          <view class=" weui-flex__item"></view>
-          <view class="grey-color">爱跑腿专送</view>
-        </view>
-        <view class="quasi-goods__bd">
-          <view class="quasi-goods__list">
-            <view wx:for="{{info.goods}}" wx:key="{{index}}" class="quasi-goods__item">
-              <view class="quasi-goods__item-name">{{item.goods_name}}</view>
-              <view class="quasi-goods__item-num">x{{item.num}}</view>
-              <view class="quasi-goods__item-price">¥{{item.price_sum}}</view>
-            </view>
-          </view>
-          <view class="quasi-goods__list">
-            <view wx:if="{{info.packing_fee > 0}}" class="quasi-goods__item">
-              <view class="quasi-goods__item-name">餐盒费</view>
-              <view class="quasi-goods__item-num"></view>
-              <view class="quasi-goods__item-price">¥{{info.packing_fee}}</view>
-            </view>
-            <view class="quasi-goods__item">
-              <view class="quasi-goods__item-name">配送费</view>
-              <view class="quasi-goods__item-num"></view>
-              <view class="quasi-goods__item-price">¥{{info.delivery_fee}}</view>
-            </view>
-          </view>
-          <view wx:if="{{info.cut_money > 0 || info.user_coupon_id}}" class="quasi-goods__list">
-            <view wx:if="{{info.cut_money > 0}}" class="quasi-goods__item">
-              <view class="quasi-goods__item-name quasi-goods__item-name_grey">
-                <image class="quasi-goods__item-name-icon" src="/images/icon_jian.png"></image>商城优惠
-              </view>
-              <view class="quasi-goods__item-num"></view>
-              <view class="quasi-goods__item-price">-¥{{info.cut_money}}</view>
-            </view>
-            <view wx:if="{{info.user_coupon_id}}" class="quasi-goods__item">
-              <view class="quasi-goods__item-name quasi-goods__item-name_grey">
-                <image class="quasi-goods__item-name-icon" src="/images/icon_hongbao.png"></image>红包
-              </view>
-              <view class="quasi-goods__item-num"></view>
-              <view class="quasi-goods__item-price">-¥{{info.coupon_money}}</view>
-            </view>
-          </view>
-          <view class="quasi-goods__list">
-            <view class="quasi-goods__item">
-              <view class="quasi-goods__item-name quasi-goods__item-name_grey">
-                总计¥{{info.order_price}} 优惠¥{{info.cut_money_total}}
-              </view>
-              <view class="quasi-goods__item-num"></view>
-              <view class="quasi-goods__item-price primary-color">
-                实付 ¥{{info.pay_price}}
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-cells__title">配送信息</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            期望时间
-          </view>
-          <view class="weui-cell__bd">立即配送</view>
-        </view>
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            配送地址
-          </view>
-          <view class="weui-cell__bd">
-            <view class="classname">
-              {{info.receiver}} {{info.receiver_phone}}
-            </view>
-            <view class="classname">
-              {{info.receiver_addr}}
-            </view>
-          </view>
-        </view>
+  
 
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            配送服务
-          </view>
-          <view class="weui-cell__bd">
-            爱跑腿专送
-          </view>
+
+
+
+
+
+
+
+  <view class="weui-cells">
+  <i-panel>
+<i-cell title="支付方式" bindtap='onChangePayway' is-link value="{{finalorder.paywaystring}}"></i-cell>
+</i-panel>
+
+  <i-panel>
+<i-cell title="座位号" value="{{finalorder.seatid}}" disabled>
+</i-cell>
+</i-panel>
+  <i-panel>
+<i-cell title="就餐人数">
+<input slot="footer" bind:change='onNumberChange' type="number" value="4" placeholder="请输入人数"/>
+</i-cell>
+</i-panel>
+
+  </view>
+
+  <view class="quasi-goods">
+    <view class="quasi-goods__hd">
+      <image class="quasi-goods__img" src="/images/shop-512.png"></image>
+      {{info.nickName}}
+    </view>
+    <view class="quasi-goods__bd">
+      <view class="quasi-goods__list">
+        <view wx:for="{{goods}}" wx:key="{{index}}" class="quasi-goods__item">
+          <view class="quasi-goods__item-name">{{item.name}}</view>
+          <view class="quasi-goods__item-singlePrice">单价：¥{{item.price}}</view>
+          <view class="quasi-goods__item-num">x{{item.num}}</view>
+          <view class="quasi-goods__item-price">¥{{item.num * item.price}}</view>
         </view>
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            备注
+      </view>
+      <view class="quasi-goods__list">
+        <view class="quasi-goods__item">
+          <view class="quasi-goods__item-num"></view>
+        </view>
+      </view>
+      <view wx:if="{{info.cut_money > 0}}" class="quasi-goods__list">
+        <view class="quasi-goods__item">
+          <view class="quasi-goods__item-name quasi-goods__item-name_grey">
+          <image class="quasi-goods__item-name-icon" src="/images/icon_jian.png"></image>商城优惠
           </view>
-          <view class="weui-cell__bd">
-            {{info.remark || '无'}}
+          <view class="quasi-goods__item-num"></view>
+          <view class="quasi-goods__item-price">-¥{{info.cut_money}}</view>
+        </view>
+      </view>
+      <view class="quasi-goods__list">
+        <view class="quasi-goods__item">
+          <view class="quasi-goods__item-name quasi-goods__item-name_grey">
+            总计¥{{order.totalGoodsPrice}} <text wx:if="{{info.cut_money_total > 0}}">优惠¥{{info.cut_money_total}}</text>
+          </view>
+          <view class="quasi-goods__item-num"></view>
+          <view class="quasi-goods__item-price primary-color">
+            实付 ¥{{order.totalPrice}}
           </view>
         </view>
       </view>
-      <view class="weui-cells__title">订单信息</view>
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            订单号码
-          </view>
-          <view class="weui-cell__bd">
-            {{info.order_no}}
-          </view>
-        </view>
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            订单时间
-          </view>
-          <view class="weui-cell__bd">
-            {{info.add_time_format}}
-          </view>
-        </view>
-        <view class="weui-cell">
-          <view class="weui-cell__hd">
-            支付方式
-          </view>
-          <view class="weui-cell__bd">
-            在线支付
-          </view>
-        </view>
-      </view>
-    </swiper-item>
-  </swiper>
+    </view>
+  </view>
+
+  <view class="weui-cells">
+    <i-input bind:change='onTipsChange' type="textarea" title="备注" placeholder="口味, 偏好等要求" maxlength="50" />
+  </view>
+
+</view>
+<view class="quasi-actions">
+  <view class="quasi-actions__cut">
+    待支付
+    <text class="primary-color">¥{{order.totalPrice}}</text>
+  </view>
+  <view class="quasi-actions__pay">
+  </view>
+  <button bindtap="onAddOrder" loading="{{loading}}" disabled="{{disabled || loading}}" class="weui-btn menu-cart__btn" type="primary">
+    点菜
+  </button>
 </view>

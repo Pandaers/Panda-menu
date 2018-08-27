@@ -4,19 +4,19 @@
   <view class="order-list">
     <view class="order-item" wx:for="{{list}}" wx:key="order_id">
       <view class="order-item__hd">
-        <navigator class="order-item__shop trangle" url="/pages/shop/show?id={{item.seller_id}}">
-          {{item.seller_name}}
+        <navigator class="order-item__shop trangle" url="/pages/shop/show?id={{item.orderid}}">
+          {{item.nickname}}
         </navigator>
         <view class="order-item__status {{item.state==1? 'order-item__status_pay': ''}}">{{ORDER_STATES[item.state]}}</view>
       </view>
-      <navigator url="/pages/order/show?id={{item.order_id}}" class="order-item__bd ">
-        <image class="order-item__pic" src="{{item.pic_url}}"></image>
+      <navigator url="/pages/order/show?id={{item.orderid}}" class="order-item__bd ">
+        <image class="order-item__pic" src="{{item.avatar}}"></image>
         <view class="order-item__content weui-cell__ft_in-access">
-          <view class="order-item__price">¥{{item.pay_price}}</view>
-          <view class="">{{item.add_time_format}}</view>
+          <view class="order-item__price">¥{{item.orderprice}}</view>
+          <view class="">{{item.createtime}}</view>
         </view>
       </navigator>
-      <view wx:if="{{item.state == 1 || (item.state == 4 && item.is_reviews == 0)}}" class="order-item__ft">
+      <view wx:if="{{item.state == 3}}" class="order-item__ft">
         <button id="{{index}}" bindtap="onPayTap" wx:if="{{item.state == 1}}" class="weui-btn_primary weui-btn_mini">立即付款</button>
         <navigator wx:elif="{{item.state == 4 && item.is_reviews == 0}}" url="/pages/order/review?id={{item.order_id}}" class="weui-btn_primary weui-btn_mini">去评论</navigator>
       </view>

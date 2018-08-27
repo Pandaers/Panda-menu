@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -56,7 +56,13 @@
 				{
 					"id": -1,
 					"name": "over",
-					"pathName": "pages/over/over"
+					"pathName": "pages/over/over",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "list",
+					"pathName": "pages/order/list"
 				}
 			]
 		}

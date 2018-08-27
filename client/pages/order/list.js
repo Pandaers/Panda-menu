@@ -4,15 +4,13 @@ import {
   getOrders, getPayment
 } from '../../utils/apis'
 
-import {
-  datetimeFormat, requestPayment
-} from '../../utils/util'
 
 var initData = {
   page: 0,
   hasMore: true,
   loading: false,
-  list: null
+  list: [{ nickname: "大傻逼", storeid: '1000', state: 1, orderid: 'OR18018', orderprice: 548, createtime: '2018-07-06 14：26', avatar:'http://i4.fuimg.com/655782/adf1accea2bd8a82.jpg'}],
+  loginInfo:{is_login:true}
 }
 
 Page({
@@ -23,14 +21,7 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     console.log('onLoad')
     var that = this
-    getApp().getLoginInfo(loginInfo => {
-      that.setData({
-        loginInfo: loginInfo
-      })
-      if (loginInfo.is_login) {
-        that.initData()
-      }
-    })
+    that.setData(initData)
   },
   onReady: function () {
     // 页面渲染完成
@@ -38,11 +29,6 @@ Page({
   onShow: function () {
     // 页面显示
     var that = this
-    getApp().getLoginInfo(loginInfo => {
-      that.setData({
-        loginInfo: loginInfo
-      })
-    })
   },
   onHide: function () {
     // 页面隐藏
@@ -52,7 +38,7 @@ Page({
   },
   initData(cb) {
     this.setData(initData)
-    this.loadData(cb)
+    //this.loadData(cb)
   },
   loadData(cb) {
     var that = this

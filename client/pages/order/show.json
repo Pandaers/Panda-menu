@@ -1,4 +1,18 @@
 {
-  "navigationBarTitleText": "订单详情",
-  "enablePullDownRefresh": true
+  "navigationBarTitleText": "提交订单",
+  "usingComponents": {
+    "i-button": "../../dist/button/index",
+    "i-cell-group": "../../dist/cell-group/index",
+    "i-cell": "../../dist/cell/index",
+    "i-panel": "../../dist/panel/index",
+    "i-icon": "../../dist/icon/index",
+    "i-tab-bar": "../../dist/tab-bar/index",
+    "i-tab-bar-item": "../../dist/tab-bar-item/index",
+    "i-tag": "../../dist/tag/index",
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-input": "../../dist/input/index",
+    "i-rate": "../../dist/rate/index",
+    "i-card": "../../dist/card/index"
+  }
 }

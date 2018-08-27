@@ -1,16 +1,8 @@
 // pages/shop/show.js
 //import js
-import {
-  makePhoneCall,
-  datetimeFormat
-} from '../../utils/util'
-
-
 //import js end
 var app = getApp()
 //import app
-
-
 var initOrder = {
   totalNum: 0,
   totalPrice: 0,
@@ -24,14 +16,10 @@ Page({
   data: {
     tabs: ["商品", "评价", "商家"],
     activeIndex: 0,
-
     activeMenuIndex: 0,
     showCart: false,
-    
     showSubGoods: false,
-
     order: initOrder,
-
     review: {
       hasMore: true,
       loading: false,
@@ -39,10 +27,10 @@ Page({
     },
     subNums:[100],
     goods_map: {
-      0: { id:0 , name: "馒头",price:10 },
-      1: { id: 1, name: "米饭", price: 2 },
-      2: { id: 2, name: "红烧肉", price: 100 },
-      3: { id: 3, name: "狮子头", price: 70 }
+      1: { id:1 , name: "馒头",price:2 },
+      2: { id: 2, name: "包子", price: 5 },
+      3: { id: 3, name: "可乐", price: 3 },
+      1000: { id: 1000, name: "雪碧", price: 4 }
       },
     info:
       {
@@ -144,21 +132,6 @@ Page({
         })
       }
     })
-    /*getSellerInfo({
-      seller_id: id,
-      success(data) {
-        data['distanceFormat'] = +(data['distance'] / 1000).toFixed(2)
-        that.setData({
-          info: data
-        })
-        wx.setNavigationBarTitle({
-          title: data.seller_name
-        })
-      },
-      complete() {
-        wx.hideNavigationBarLoading()
-      }
-    })*/
   },
 
   loadReview() {
@@ -170,7 +143,6 @@ Page({
     if (loading) {
       return;
     }
-
     this.setData({
       'review.loading': true
     })
@@ -448,8 +420,8 @@ Page({
   onShareAppMessage() {
     var {info:{seller_id, seller_name}} = this.data
     return {
-      title: seller_name,
-      path: `/pages/shop/show?id=${seller_id}`
+      title: this.data.nickname,
+      path: `/pages/shop/show?storeid=`+app.globalData.storeid
     }
   }
 })
