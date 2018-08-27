@@ -301,7 +301,14 @@ Page({
   },
   clearCart(e) {
     this.setData({
-      order: initOrder,
+      order: {
+        totalNum: 0,
+        totalPrice: 0,
+        totalGoodsPrice: 0,
+        totalPackingFee: 0,
+        goodsNums: {},
+        goods: []
+      },
       showCart: false
     })
   },
