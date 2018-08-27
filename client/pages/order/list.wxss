@@ -1,6 +1,5 @@
 /* pages/order/list.wxss */
 @import '/templates/load-more.wxss';
-
 .order-logout {
   text-align: center;
 }
@@ -19,9 +18,6 @@
 
 .order-item {
   margin-top: 10px;
-  background-color: #fff;
-  border-top: 1rpx solid #e8e8e8;
-  border-bottom: 1rpx solid #e8e8e8;
 }
 
 .order-item__hd {

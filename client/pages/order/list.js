@@ -1,15 +1,11 @@
 // pages/order/list.js
 import { ORDER_STATES } from './constant'
-import {
-  getOrders, getPayment
-} from '../../utils/apis'
-
-
+var app = getApp()
 var initData = {
   page: 0,
   hasMore: true,
   loading: false,
-  list: [{ nickname: "大傻逼", storeid: '1000', state: 1, orderid: 'OR18018', orderprice: 548, createtime: '2018-07-06 14：26', avatar:'http://i4.fuimg.com/655782/adf1accea2bd8a82.jpg'}],
+  list: [{ nickname: "少掌柜", storeid: '1000', state: 1, orderid: 'OR18018', orderprice: 548, createtime: '2018-07-06 14：26', avatar:'http://i4.fuimg.com/655782/adf1accea2bd8a82.jpg'}],
   loginInfo:{is_login:true}
 }
 
@@ -22,6 +18,7 @@ Page({
     console.log('onLoad')
     var that = this
     that.setData(initData)
+    that.loadData()
   },
   onReady: function () {
     // 页面渲染完成
@@ -40,36 +37,27 @@ Page({
     this.setData(initData)
     //this.loadData(cb)
   },
-  loadData(cb) {
+  loadData() {
     var that = this
-    var {
-      loading, page
-    } = this.data
-    if (loading) {
-      return
-    }
-
-    this.setData({
-      loading: true
-    })
-    getOrders({
-      page,
-      success(data) {
-        var {list} = that.data
-        var {list: list2, count, page} = data
-        list2 = list2.map(item => {
-          item['add_time_format'] = datetimeFormat(item.add_time)
-          return item
+    wx.login({
+      success: function (res) {
+        var code = res.code;
+        wx.request({
+          url: app.requestUrls.myorders,
+          data: {
+            userid: app.globalData.userid
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log(res.data)
+            that.that.setData({list:res.data})
+          },
+          fail: function () {
+            console.log("bad ")
+          }
         })
-        that.setData({
-          loading: false,
-          list: list ? list.concat(list2) : list2,
-          hasMore: count == 10,
-          page: page + 1
-        })
-
-        cb && cb()
-
       }
     })
   },
@@ -108,16 +96,19 @@ Page({
     })
   },
   onReachBottom(e) {
+    that.loadData()
+    /*
     var {
       loginInfo: {is_login},
       hasMore, loading
     } = this.data
     if (is_login && hasMore && !loading) {
       this.loadData()
-    }
+    }*/
   },
   onPullDownRefresh() {
-    var {loginInfo: {is_login}} = this.data
+    that.loadData()
+    /*var {loginInfo: {is_login}} = this.data
     if (is_login) {
       wx.showNavigationBarLoading()
       this.initData(() => {
@@ -126,7 +117,7 @@ Page({
       })
     } else {
       wx.stopPullDownRefresh()
-    }
+    }*/
   },
 
   callback(loginInfo) {

@@ -3,25 +3,49 @@
 <view wx:if="{{loginInfo.is_login}}">
   <view class="order-list">
     <view class="order-item" wx:for="{{list}}" wx:key="order_id">
+<i-card title="订单详情">
+    <view slot="content">
+
+
+
       <view class="order-item__hd">
         <navigator class="order-item__shop trangle" url="/pages/shop/show?id={{item.orderid}}">
           {{item.nickname}}
         </navigator>
         <view class="order-item__status {{item.state==1? 'order-item__status_pay': ''}}">{{ORDER_STATES[item.state]}}</view>
       </view>
-      <navigator url="/pages/order/show?id={{item.orderid}}" class="order-item__bd ">
+      <navigator url="/pages/order/show?orderid={{item.orderid}}" class="order-item__bd ">
         <image class="order-item__pic" src="{{item.avatar}}"></image>
         <view class="order-item__content weui-cell__ft_in-access">
-          <view class="order-item__price">¥{{item.orderprice}}</view>
-          <view class="">{{item.createtime}}</view>
+          <view class="order-item__price">总价：¥{{item.orderprice}}</view>
+          <view class="">
+          订单号：{{item.orderid}}     
+          </view>
         </view>
+
+        
       </navigator>
       <view wx:if="{{item.state == 3}}" class="order-item__ft">
         <button id="{{index}}" bindtap="onPayTap" wx:if="{{item.state == 1}}" class="weui-btn_primary weui-btn_mini">立即付款</button>
         <navigator wx:elif="{{item.state == 4 && item.is_reviews == 0}}" url="/pages/order/review?id={{item.order_id}}" class="weui-btn_primary weui-btn_mini">去评论</navigator>
       </view>
+
+
+
+
+      </view>
+          <view slot="footer">
+         <i-icon type="time" size="17" color="#80848f"></i-icon>下单时间：{{item.createtime}}
+          </view>
+
+</i-card>
+
+
     </view>
   </view>
+
+
+
   <template is="load-more" data="{{hasMore: hasMore, loading: loading}}"></template>
 </view>
 <view wx:elif="{{loginInfo}}" class="order-logout">
