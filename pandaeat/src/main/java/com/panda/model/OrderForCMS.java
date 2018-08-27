@@ -9,6 +9,24 @@ public class OrderForCMS {
     private short orderstatue;
     private short dishstatue;
     private String createtime;
+    private String endtime;
+    private short delstatue;
+
+    public short getDelstatue() {
+        return delstatue;
+    }
+
+    public void setDelstatue(short delstatue) {
+        this.delstatue = delstatue;
+    }
+
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
 
     public Integer getOrderid() {
         return orderid;

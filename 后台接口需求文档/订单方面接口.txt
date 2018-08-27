@@ -8,23 +8,38 @@
 	订单创建时间 					private String createtime;	
 	
 
-2. 请求所有订单 
-	订单号
-	订单的详情 比如 馒头1个，西瓜两个，德州扒鸡一个
-	订单备注 比如 加婉米饭
-	订单桌号 比如 5
-	订单状态 比如 未支付 和 未上菜
-	订单创建时间 
-	订单结束时间 
-	订单总价格 比如1234
+2. 请求所有订单						127.0.0.1:8080/CMS/AllOrder?currentPage=1 
+	订单号						private Integer orderid;
+	订单的详情 比如 馒头1个，西瓜两个，德州扒鸡一个	private String ordercontent;
+	订单备注 比如 加婉米饭				private String tips;
+	订单桌号 比如 5					private Integer seatid;
+	订单状态 比如 未支付 和 未上菜			private short orderstatue;private short dishstatue;
+	订单创建时间 					private String createtime;
+	订单结束时间 					private String endtime;
+	订单总价格 比如1234				private String orderprice;
 
-3.提供订单删除的接口 我传一个订单的id 名字叫作 orderid
+3.提供订单删除的接口 我传一个订单的id 名字叫作 orderid		127.0.0.1:8080/CMS/delOrder?orderid=1000
 
-4.提供编辑的按钮
-	传过去内容是 
+4.提供编辑的按钮						127.0.0.1:8080/CMS/SingleOrder?orderid=1000
+	传过去内容是 					只需要orderid就行
 		orderid
 		ordertips (订单备注)
 		ordertable (订单桌号)
 		paystate (支付状态)
 		serverstate (订单桌号)
+	接口4返回如下：
+    private Integer storeid;
+    private Integer seatid;
+    private Integer orderid;
+    private Integer userid;
+    private String createtime;
+    private String ordercontent;
+    private String orderprice;
+    private Integer customernum;
+    private short orderstatue;
+    private String endtime;
+    private short payway;
+    private String tips;
+    private short dishstatue;
+    private short delstatue;
 
