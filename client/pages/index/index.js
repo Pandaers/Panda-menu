@@ -125,6 +125,7 @@ Page({
           success: function (res) {
             console.log(res.data)
             that.setData({ info: res.data.data})
+            app.globalData.nickname = res.data.data.nickname
           },
           fail: function () {
             console.log("bad ")

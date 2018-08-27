@@ -109,11 +109,15 @@ App({
     seatid: "12",
     order:{},
     userid:"1",
-    orderid:"00100"
+    orderid:"00100",
+    nickname:""
 
   },
   requestUrls:{
     login:"https://www.hcyang.top/login",
-    menu:"https://www.hcyang.top/menu"
+    menu:"https://www.hcyang.top/menu",
+    myorders: "https://www.hcyang.top/menu",
+    order: "https://www.hcyang.top/menu",
+    singleorder: "https://www.hcyang.top/menu"
   }
 })
