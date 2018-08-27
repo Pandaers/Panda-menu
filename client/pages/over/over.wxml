@@ -54,4 +54,6 @@
 
 
       <i-button bind:click="onAddFoods" inline type="success">加菜</i-button>
+
+            <i-button bind:click="onMyOrders" inline type="success">我的订单</i-button>
      

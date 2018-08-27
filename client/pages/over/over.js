@@ -27,7 +27,14 @@ Page({
   onAddFoods: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     wx.reLaunch({
-      url: '../shop/show',
+      url: '../index/index',
+    })
+
+  },
+  onMyOrders: function (options) {
+    // 页面初始化 options为页面跳转所带来的参数
+    wx.reLaunch({
+      url: '../order/list',
     })
 
   },
