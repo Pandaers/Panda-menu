@@ -1,13 +1,17 @@
 // pages/order/quasi.js
 var app = getApp()
-
+import { ORDER_STATES } from './constant'
+import { ORDER_BUTTON } from './constant'
 import {
   alert,
   requestPayment, getCurrentPage
 } from '../../utils/util'
 Page({
   data: {
-    content: ''
+    content: '',
+    orderid:'1000',
+    ORDER_STATES,
+    ORDER_BUTTON
   },
   onTipsChange: function (e) {
     console.log(e)
@@ -15,7 +19,8 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    this.id = options.id || '2908'
+    this.data.orderid = options.orderid
+
     this.loadData()
 
   },
@@ -43,6 +48,7 @@ Page({
     }
     this.setData({
       loading: false,
+      nickname: app.globalData.nickname,
       goods: app.globalData.order.goods,
       order: app.globalData.order,
       finalorder: {
@@ -58,7 +64,28 @@ Page({
         orderprice: app.globalData.order.totalPrice
       }
     })
-    wx.showNavigationBarLoading()
+
+    wx.login({
+      success: function (res) {
+        var code = res.code;
+        wx.request({
+          url: app.requestUrls.singleorder,
+          data: {
+            orderid: that.data.orderid
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log(res.data)
+            that.that.setData({ finalorder: res.data })
+          },
+          fail: function () {
+            console.log("bad ")
+          }
+        })
+      }
+    })
   },
   callbackAddress(addr_id) {
     var that = this

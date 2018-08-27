@@ -45,6 +45,7 @@ Page({
       loading: false,
       goods:app.globalData.order.goods,
       order: app.globalData.order,
+      nickname: app.globalData.nickname,
       finalorder: {
         paywaystring: "现金支付",
         payway: 3,
