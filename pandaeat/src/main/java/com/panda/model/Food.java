@@ -21,6 +21,15 @@ public class Food {
     private String videourl;
     private Integer realsales;
     private Integer goodsnums;
+    private String catname;
+
+    public String getCatname() {
+        return catname;
+    }
+
+    public void setCatname(String catname) {
+        this.catname = catname;
+    }
 
     public Integer getGoodsnums() {
         return goodsnums;
