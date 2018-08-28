@@ -33,22 +33,25 @@ public interface OrderMapper {
     * 选择未处理和未上菜的订单，按时间倒序
     * */
     @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime,endtime from " +
-            "pe_order where delstatue=0 and (dishstatue=0 or orderstatue!=3) order by createtime desc")
-    List<OrderForCMS> selectOrderForCMS();
+            "pe_order where storeid=#{storeid} and delstatue=0 and (dishstatue=0 or orderstatue!=3) order by createtime desc")
+    List<OrderForCMS> selectOrderForCMS(@Param("storeid") Integer storeid);
 
     /*
     * 选择出所有订单，按时间倒序
     * */
     @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime,endtime from " +
-            "pe_order  where delstatue=0 order by createtime desc")
-    List<OrderForCMS> selectAllOrderForCMS();
+            "pe_order  where storeid=#{storeid} and delstatue=0 order by createtime desc")
+    List<OrderForCMS> selectAllOrderForCMS(@Param("storeid") Integer storeid);
 
     /*
      * 选择出所需单个订单所有信息
      * */
-    @Select("select * from pe_order where orderid=#{orderid} order by createtime desc limit 1")
-    OrderForCMS selectSingleOrderForCMS(@Param("orderid") Integer orderid);
+    @Select("select * from pe_order where storeid=#{storeid} and orderid=#{orderid} order by createtime desc limit 1")
+    OrderForCMS selectSingleOrderForCMS(@Param("orderid") Integer orderid,@Param("storeid") Integer storeid);
 
+    /*
+     * 删除单个订单
+     * */
     @Select("SELECT COUNT(*) FROM pe_order WHERE orderid=#{orderid} and delstatue=0")
     Integer countOrderByOrderid(@Param("orderid") Integer orderid);
 

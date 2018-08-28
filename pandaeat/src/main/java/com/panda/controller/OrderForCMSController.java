@@ -5,6 +5,7 @@ import com.panda.common.response.RespCode;
 import com.panda.common.response.ResponseEntity;
 import com.panda.mapper.OrderMapper;
 import com.panda.model.OrderForCMS;
+import com.panda.service.catNameReform.CatNameReform;
 import com.panda.service.time.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,33 +20,45 @@ public class OrderForCMSController {
     OrderMapper orderMapper;
     @Autowired
     TimeUtil timeUtil;
+    @Autowired
+    CatNameReform catNameReform;
+
 
     Integer currentPage;
     Integer orderid;
+    Integer storeid;
 
     /*
     * 返回出未上菜和未处理完成的订单
     * */
     @RequestMapping(value = "CMS/pendingOrder")
-    public ResponseEntity selectOrderListForCMS(Integer currentPage){
+    public ResponseEntity selectOrderListForCMS(Integer currentPage,Integer storeid){
         List<OrderForCMS> result = new ArrayList();
         PageHelper.startPage(currentPage, 20);
-        result=orderMapper.selectOrderForCMS();
+        result=orderMapper.selectOrderForCMS(storeid);
+
         if(result==null){
             return new ResponseEntity(RespCode.ERROR);
         }
+        for(OrderForCMS list:result){
+            list.setOrdercontent(catNameReform.catNameReform(list.getOrdercontent()));
+        }
+
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
     /*
     *返回出所有订单信息
      */
     @RequestMapping(value = "CMS/AllOrder")
-    public ResponseEntity selectAllOrderListForCMS(Integer currentPage){
+    public ResponseEntity selectAllOrderListForCMS(Integer currentPage,Integer storeid){
         List<OrderForCMS> result = new ArrayList();
         PageHelper.startPage(currentPage, 20);
-        result=orderMapper.selectAllOrderForCMS();
+        result=orderMapper.selectAllOrderForCMS(storeid);
         if(result==null){
             return new ResponseEntity(RespCode.ERROR);
+        }
+        for(OrderForCMS list:result){
+            list.setOrdercontent(catNameReform.catNameReform(list.getOrdercontent()));
         }
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
@@ -54,15 +67,16 @@ public class OrderForCMSController {
     * 返回所给orderid所对应的订单
     **/
     @RequestMapping(value = "CMS/SingleOrder")
-    public ResponseEntity selectSingleOrderForCMS(Integer orderid){
+    public ResponseEntity selectSingleOrderForCMS(Integer orderid,Integer storeid){
         if(orderid==null){
             return new ResponseEntity(RespCode.WRONG);
         }
         OrderForCMS result =new OrderForCMS();
-        result=orderMapper.selectSingleOrderForCMS(orderid);
+        result=orderMapper.selectSingleOrderForCMS(orderid,storeid);
         if(result==null){
             return new ResponseEntity(RespCode.ERROR);
         }
+        result.setOrdercontent(catNameReform.catNameReform(result.getOrdercontent()));
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
 
@@ -79,6 +93,13 @@ public class OrderForCMSController {
     }
 
 
+    public Integer getStoreid() {
+        return storeid;
+    }
+
+    public void setStoreid(Integer storeid) {
+        this.storeid = storeid;
+    }
 
     public Integer getOrderid() {
         return orderid;
