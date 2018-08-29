@@ -387,9 +387,6 @@ Page({
       loading: true
     })
     //temp
-    wx.navigateTo({
-      url: `/pages/order/quasi`
-    })
     wx.login({
       success: function (res) {
         var code = res.code;
