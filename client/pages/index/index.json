@@ -7,10 +7,13 @@
         "i-panel": "../../dist/panel/index",
         "i-icon": "../../dist/icon/index",
     "i-tab-bar": "../../dist/tab-bar/index",
+            "wux-tag": "../../dists/tag/index",
     "i-tab-bar-item": "../../dist/tab-bar-item/index",
-        "i-tag": "../../dist/tag/index",
             "i-row": "../../dist/row/index",
+                "i-tabs": "../../dists/tabs/index",
+                "i-tab": "../../dists/tab/index",
             "i-col": "../../dist/col/index",
+          "i-avatar": "../../dists/avatar/index",
                 "i-rate": "../../dist/rate/index"
   }
   }

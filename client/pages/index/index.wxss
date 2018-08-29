@@ -15,9 +15,60 @@
 
 .shop-info {
   color: #fff;
-  background-color: #ff5801;
+    position: relative;
+    background: url(http://i2.tiimg.com/655782/4f5357e8aef19692.jpg);
+    z-index:1;
+    -webkit-filter:drop-shadow(5px 5px 5px #ccc);
+    
 }
-
+.shop-info-avatar{
+      z-index:12;
+      position: fixed;
+      -webkit-filter:drop-shadow(5px 5px 5px #ccc);
+}
+.shop-info:after {
+   position: absolute;
+    left:0;
+    top:0;
+    width:150%;
+    height:150%;
+    background: inherit;
+    filter: blur(6px)brightness(70%);
+    z-index: 2;
+        
+}
+.shop-info-nickname {
+  color: #fff;
+  position: fixed;
+  z-index: 11;
+  margin-left:30%;
+  margin-top:1%;
+  font-style: inherit;
+  font-weight:bolder;
+  font-size: 22px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.shop-info-notice{
+   color: gainsboro;
+  position: fixed;
+  z-index: 11;
+  margin-left:30%;
+  margin-top:9%;
+  font-style: inherit;
+  font-size: 12px;
+}
+.shop-info-star{
+  position: fixed;
+  z-index: 11;
+  margin-left:30%;
+  margin-top:13%;
+}
+.shop-info-tag{
+  position: fixed;
+  z-index: 11;
+  margin-left:30%;
+  margin-top:21%;
+}
 .shop-info::before {
   border: none;
 }
@@ -77,7 +128,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100%;
+  height: 120%;
 }
 
 

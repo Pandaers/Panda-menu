@@ -18,6 +18,7 @@ Page({
     activeIndex: 0,
     activeMenuIndex: 0,
     showCart: false,
+    infoOpacity:100,
     showSubGoods: false,
     order: initOrder,
     review: {
@@ -150,13 +151,15 @@ Page({
   },
 
   tabClick: function (e) {
+    console.log(e)
     this.setData({
-      activeIndex: e.currentTarget.id
+      activeIndex: e.detail.key
     });
   },
 
   swiperChange(e) {
     var {current} = e.detail
+    console.log(e)
     this.setData({
       activeIndex: current
     })
@@ -428,5 +431,8 @@ Page({
       title: this.data.nickname,
       path: `/pages/shop/show?storeid=`+app.globalData.storeid
     }
+  },
+  onPageScroll(e){
+
   }
 })
