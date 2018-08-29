@@ -13,7 +13,7 @@
     <view class="weui-panel__bd">
       <view class="weui-media-box weui-media-box_appmsg">
 
-      <view style='opacity:{{infoOpacity}}'>
+      <view>
                 <i-avatar class="shop-info-avatar" shape="square" size="large" src="{{info.avatar}}" />
     <view class="shop-info-nickname">{{info.nickname}}</view>
 

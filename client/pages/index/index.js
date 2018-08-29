@@ -10,6 +10,8 @@ var initOrder = {
   totalPackingFee: 0,
   goodsNums: {},
   goods: []
+
+  
 }
 
 Page({
@@ -18,6 +20,7 @@ Page({
     activeIndex: 0,
     activeMenuIndex: 0,
     showCart: false,
+    infoFlag: true,
     infoOpacity:100,
     showSubGoods: false,
     order: initOrder,
@@ -47,7 +50,62 @@ Page({
         notice: "今日特价，满15减10",
         menus: [{
           catname: "主食",
-          foods: [{
+          foods: [
+            {
+              id: 0,
+              avatar: "www.baidu.com",
+              name: "馒头",
+              virtualsales: 10,
+              price: 10,
+              goodsNums: 500
+
+            },
+            {
+              id: 1,
+              avatar: "www.baidu.com",
+              name: "米饭",
+              virtualsales: 10,
+              price: 2,
+              goodsNums: 500
+
+            },
+            {
+              id: 0,
+              avatar: "www.baidu.com",
+              name: "馒头",
+              virtualsales: 10,
+              price: 10,
+              goodsNums: 500
+
+            },
+            {
+              id: 1,
+              avatar: "www.baidu.com",
+              name: "米饭",
+              virtualsales: 10,
+              price: 2,
+              goodsNums: 500
+
+            },
+            {
+              id: 0,
+              avatar: "www.baidu.com",
+              name: "馒头",
+              virtualsales: 10,
+              price: 10,
+              goodsNums: 500
+
+            },
+            {
+              id: 1,
+              avatar: "www.baidu.com",
+              name: "米饭",
+              virtualsales: 10,
+              price: 2,
+              goodsNums: 500
+
+            },
+            {
             id: 0,
             avatar: "www.baidu.com",
             name: "馒头",
@@ -433,6 +491,10 @@ Page({
     }
   },
   onPageScroll(e){
-
+    if (e.scrollTop>125){
+    this.setData({
+      infoFlag:false
+    })
+    }
   }
 })
