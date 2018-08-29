@@ -756,6 +756,8 @@ icon {
   margin-top: 10px;
   position: relative;
   overflow: hidden;
+  height: 22%;
+  z-index:1;
 }
 .weui-panel:first-child {
   margin-top: 0;
@@ -961,7 +963,6 @@ icon {
 .weui-tab__panel {
   box-sizing: border-box;
   height: 100%;
-  padding-top: 50px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
