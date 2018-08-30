@@ -38,7 +38,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 #    schema:
 #      - classpath:department.sql
-
+#
 #server:
 #  port: 443
 #  ssl:

@@ -55,6 +55,7 @@ public class MenuForCMSController {
     @RequestMapping(value = "/CMS/AddMenu")
     public ResponseEntity selectSingleMenu(Food data){
 
+        return new ResponseEntity(RespCode.SUCCESS,null);
     }
 
 

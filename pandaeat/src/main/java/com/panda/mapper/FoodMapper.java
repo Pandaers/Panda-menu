@@ -43,7 +43,7 @@ public interface FoodMapper {
     private Integer realsales;
     private Integer goodsnums;
     private String catname;*/
-    @Insert("")
+//    @Insert("")
 
 
 
