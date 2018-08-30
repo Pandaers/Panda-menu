@@ -51,33 +51,7 @@ Page({
         menus: [{
           catname: "主食",
           foods: [
-            {
-              id: 0,
-              avatar: "www.baidu.com",
-              name: "馒头",
-              virtualsales: 10,
-              price: 10,
-              goodsNums: 500
-
-            },
-            {
-              id: 1,
-              avatar: "www.baidu.com",
-              name: "米饭",
-              virtualsales: 10,
-              price: 2,
-              goodsNums: 500
-
-            },
-            {
-              id: 0,
-              avatar: "www.baidu.com",
-              name: "馒头",
-              virtualsales: 10,
-              price: 10,
-              goodsNums: 500
-
-            },
+            
             {
               id: 1,
               avatar: "www.baidu.com",
@@ -169,7 +143,6 @@ Page({
   loadData() {
     var that = this
     var id = this.id;
-    wx.showNavigationBarLoading()
     wx.login({
       success: function (res) {
         var code = res.code;
