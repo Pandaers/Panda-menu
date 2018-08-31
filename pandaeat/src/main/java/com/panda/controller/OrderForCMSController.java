@@ -5,6 +5,7 @@ import com.panda.common.response.RespCode;
 import com.panda.common.response.ResponseEntity;
 import com.panda.mapper.OrderMapper;
 import com.panda.model.FoodName;
+import com.panda.model.Order;
 import com.panda.model.OrderForCMS;
 import com.panda.service.foodNameReform.FoodNameReform;
 import com.panda.service.time.TimeUtil;
@@ -23,6 +24,7 @@ public class OrderForCMSController {
     TimeUtil timeUtil;
     @Autowired
     FoodNameReform foodNameReform;
+
 
 
     Integer currentPage;
@@ -72,7 +74,7 @@ public class OrderForCMSController {
         if(orderid==null){
             return new ResponseEntity(RespCode.WRONG);
         }
-        OrderForCMS result =new OrderForCMS();
+        Order result =new Order();
         result=orderMapper.selectSingleOrderForCMS(orderid,storeid);
         if(result==null){
             return new ResponseEntity(RespCode.ERROR);

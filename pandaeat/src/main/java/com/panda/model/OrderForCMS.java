@@ -7,10 +7,19 @@ public class OrderForCMS {
     private Integer seatid;
     private String orderprice;
     private short orderstatue;
+    private short payway;
     private short dishstatue;
     private String createtime;
     private String endtime;
     private short delstatue;
+
+    public short getPayway() {
+        return payway;
+    }
+
+    public void setPayway(short payway) {
+        this.payway = payway;
+    }
 
     public short getDelstatue() {
         return delstatue;

@@ -43,7 +43,21 @@ public interface FoodMapper {
     private Integer realsales;
     private Integer goodsnums;
     private String catname;*/
-//    @Insert("")
+    @Insert("insert into pe_food (storeid,name,price,originalprice,detail,catid,status,addtime,score,isdelete," +
+            "virtualsales,compressimg,img,videourl,realsales,goodsnums) value(#{food.storeid},#{food.name},#{food.price}," +
+            "#{food.originalprice},#{food.detail},#{food.catid},0,#{food.addtime},#{food.score},#{food.isdelete},#{food.virtualsales}," +
+            "#{food.compressimg},#{food.img},#{food.videourl},#{food.realsales},#{food.goodsnums})")
+    void insertFood(Food food);
+
+
+
+
+
+
+
+
+
+
 
 
 

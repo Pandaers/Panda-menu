@@ -33,14 +33,14 @@ public interface OrderMapper {
     /*
     * 选择未处理和未上菜的订单，按时间倒序
     * */
-    @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime,endtime from " +
+    @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime,endtime,payway from " +
             "pe_order where storeid=#{storeid} and delstatue=0 and (dishstatue=0 or orderstatue=0) order by createtime desc")
     List<OrderForCMS> selectOrderForCMS(@Param("storeid") Integer storeid);
 
     /*
     * 选择出所有订单，按时间倒序
     * */
-    @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime,endtime from " +
+    @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime,endtime,payway from " +
             "pe_order  where storeid=#{storeid} and delstatue=0 order by createtime desc")
     List<OrderForCMS> selectAllOrderForCMS(@Param("storeid") Integer storeid);
 
@@ -49,7 +49,7 @@ public interface OrderMapper {
      * */
     @Select("select * from pe_order where storeid=#{storeid} and orderid=#{orderid} and delstatue=0 order " +
             "by createtime desc limit 1")
-    OrderForCMS selectSingleOrderForCMS(@Param("orderid") Integer orderid,@Param("storeid") Integer storeid);
+    Order selectSingleOrderForCMS(@Param("orderid") Integer orderid,@Param("storeid") Integer storeid);
 
     /*
      * 删除单个订单

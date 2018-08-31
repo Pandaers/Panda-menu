@@ -25,7 +25,9 @@ public class MenuForCMSController {
 
     Integer storeid;
     Integer id;
-
+    /*
+    * 返回该饭店所有菜品
+    * */
     @RequestMapping(value = "/CMS/MenuList")
     public ResponseEntity selectMenuList(Integer storeid){
         List<FoodForCMS> result =foodMapper.selectFoodCMSList(storeid);
@@ -39,7 +41,9 @@ public class MenuForCMSController {
         }
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
-
+    /*
+     * 返回所选的菜品详情
+     * */
     @RequestMapping(value = "/CMS/SingleMenu")
     public ResponseEntity selectSingleMenu(Integer storeid,Integer id){
         //得到菜品名int转string对应map
