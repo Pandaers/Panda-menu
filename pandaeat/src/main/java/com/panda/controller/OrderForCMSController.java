@@ -4,8 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.panda.common.response.RespCode;
 import com.panda.common.response.ResponseEntity;
 import com.panda.mapper.OrderMapper;
+import com.panda.model.FoodName;
 import com.panda.model.OrderForCMS;
-import com.panda.service.catNameReform.CatNameReform;
+import com.panda.service.foodNameReform.FoodNameReform;
 import com.panda.service.time.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class OrderForCMSController {
     @Autowired
     TimeUtil timeUtil;
     @Autowired
-    CatNameReform catNameReform;
+    FoodNameReform foodNameReform;
 
 
     Integer currentPage;
@@ -41,7 +42,7 @@ public class OrderForCMSController {
             return new ResponseEntity(RespCode.ERROR);
         }
         for(OrderForCMS list:result){
-            list.setOrdercontent(catNameReform.catNameReform(list.getOrdercontent()));
+            list.setOrdercontent(foodNameReform.foodNameReform(list.getOrdercontent(),storeid));
         }
 
         return new ResponseEntity(RespCode.SUCCESS,result);
@@ -58,7 +59,7 @@ public class OrderForCMSController {
             return new ResponseEntity(RespCode.ERROR);
         }
         for(OrderForCMS list:result){
-            list.setOrdercontent(catNameReform.catNameReform(list.getOrdercontent()));
+            list.setOrdercontent(foodNameReform.foodNameReform(list.getOrdercontent(),storeid));
         }
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
@@ -76,7 +77,7 @@ public class OrderForCMSController {
         if(result==null){
             return new ResponseEntity(RespCode.ERROR);
         }
-        result.setOrdercontent(catNameReform.catNameReform(result.getOrdercontent()));
+        result.setOrdercontent(foodNameReform.foodNameReform(result.getOrdercontent(),storeid));
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
 
@@ -88,7 +89,7 @@ public class OrderForCMSController {
         if(orderMapper.countOrderByOrderid(orderid)==0){
             return new ResponseEntity(RespCode.ERROR);
         }
-        orderMapper.delOrderByOrderid(orderid,timeUtil.getNowTime());
+        orderMapper.delOrderByOrderid(orderid);
         return new ResponseEntity(RespCode.SUCCESS);
     }
 

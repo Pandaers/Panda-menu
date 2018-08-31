@@ -1,5 +1,6 @@
 package com.panda.mapper;
 
+import com.panda.model.FoodName;
 import com.panda.model.Order;
 import com.panda.model.OrderForCMS;
 import org.apache.ibatis.annotations.*;
@@ -33,7 +34,7 @@ public interface OrderMapper {
     * 选择未处理和未上菜的订单，按时间倒序
     * */
     @Select("select orderid,ordercontent,tips,seatid,orderprice,orderstatue,dishstatue,createtime,endtime from " +
-            "pe_order where storeid=#{storeid} and delstatue=0 and (dishstatue=0 or orderstatue!=3) order by createtime desc")
+            "pe_order where storeid=#{storeid} and delstatue=0 and (dishstatue=0 or orderstatue=0) order by createtime desc")
     List<OrderForCMS> selectOrderForCMS(@Param("storeid") Integer storeid);
 
     /*
@@ -46,7 +47,8 @@ public interface OrderMapper {
     /*
      * 选择出所需单个订单所有信息
      * */
-    @Select("select * from pe_order where storeid=#{storeid} and orderid=#{orderid} order by createtime desc limit 1")
+    @Select("select * from pe_order where storeid=#{storeid} and orderid=#{orderid} and delstatue=0 order " +
+            "by createtime desc limit 1")
     OrderForCMS selectSingleOrderForCMS(@Param("orderid") Integer orderid,@Param("storeid") Integer storeid);
 
     /*
@@ -55,7 +57,11 @@ public interface OrderMapper {
     @Select("SELECT COUNT(*) FROM pe_order WHERE orderid=#{orderid} and delstatue=0")
     Integer countOrderByOrderid(@Param("orderid") Integer orderid);
 
-    @Update("update pe_order set delstatue=1, endtime=#{endtime} where orderid=#{orderid}")
-    void delOrderByOrderid(@Param("orderid") Integer orderid,@Param("endtime") String endtime);
+    @Update("update pe_order set delstatue=1 where orderid=#{orderid}")
+    void delOrderByOrderid(@Param("orderid") Integer orderid);
+
+    @Select("select id,name from pe_food where storeid=#{storeid} and status=0 and isdelete=0 order by addtime desc")
+    List<FoodName> foodNameReform (Integer storeid);
+
 }
 
