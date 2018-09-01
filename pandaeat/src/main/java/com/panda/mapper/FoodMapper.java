@@ -2,10 +2,7 @@ package com.panda.mapper;
 
 import com.panda.model.Food;
 import com.panda.model.FoodForCMS;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -43,11 +40,12 @@ public interface FoodMapper {
     private Integer realsales;
     private Integer goodsnums;
     private String catname;*/
-    @Insert("insert into pe_food (storeid,name,price,originalprice,detail,catid,status,addtime,score,isdelete," +
+    @Insert("insert into pe_food (storeid,name,price,originalprice,detail,catid,addtime,score," +
             "virtualsales,compressimg,img,videourl,realsales,goodsnums) value(#{food.storeid},#{food.name},#{food.price}," +
-            "#{food.originalprice},#{food.detail},#{food.catid},0,#{food.addtime},#{food.score},#{food.isdelete},#{food.virtualsales}," +
+            "#{food.originalprice},#{food.detail},#{food.catid},#{food.addtime},#{food.score},#{food.virtualsales}," +
             "#{food.compressimg},#{food.img},#{food.videourl},#{food.realsales},#{food.goodsnums})")
-    void insertFood(Food food);
+    @Options(useGeneratedKeys = true, keyProperty = "user.id")
+    void insertFood(@Param("food")Food food);
 
 
 

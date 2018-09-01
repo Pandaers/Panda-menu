@@ -12,7 +12,7 @@ public class Food {
     private String detail;
     private Integer catid;
     private Integer status;
-    private Integer addtime;
+    private String addtime;
     private Integer score;
     private Integer isdelete;
     private Integer virtualsales;
@@ -71,8 +71,10 @@ public class Food {
         this.status = status;
     }
 
-    public void setAddtime(Integer addtime) {
-        this.addtime = addtime;
+    public void setAddtime(String addtime) {this.addtime = addtime;}
+
+    public String getAddtime() {
+        return addtime;
     }
 
     public void setScore(Integer score) {
@@ -128,9 +130,7 @@ public class Food {
         return status;
     }
 
-    public Integer getAddtime() {
-        return addtime;
-    }
+
 
     public Integer getScore() {
         return score;

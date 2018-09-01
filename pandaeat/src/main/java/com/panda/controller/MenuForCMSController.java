@@ -2,11 +2,14 @@ package com.panda.controller;
 
 import com.panda.common.response.RespCode;
 import com.panda.common.response.ResponseEntity;
+import com.panda.mapper.CatMapper;
 import com.panda.mapper.FoodMapper;
+import com.panda.model.Cat;
 import com.panda.model.Food;
 import com.panda.model.FoodForCMS;
 import com.panda.model.RequestOrder;
 import com.panda.service.getCatMap.GetCatMap;
+import com.panda.service.time.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +24,11 @@ public class MenuForCMSController {
     @Autowired
     FoodMapper foodMapper;
     @Autowired
+    CatMapper catMapper;
+    @Autowired
     GetCatMap getCatMap;
-
+    @Autowired
+    TimeUtil timeUtil;
     Integer storeid;
     Integer id;
     /*
@@ -55,12 +61,22 @@ public class MenuForCMSController {
         result.setCatname(catmap.get(result.getCatid()));
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
+    /*
+    * ajax传回类别表（CatList）
+    * */
+    @RequestMapping(value = "/CMS/allCatName")
+    public ResponseEntity allCatName(Cat data){
+        List<Cat> result=catMapper.selectAllCatData();
+        return new ResponseEntity(RespCode.SUCCESS,result);
+    }
 
     @RequestMapping(value = "/CMS/AddMenu")
-    public ResponseEntity selectSingleMenu(Food data){
-
-        return new ResponseEntity(RespCode.SUCCESS,null);
+    public ResponseEntity selectSingleMenu(Food food){
+        food.setAddtime(timeUtil.getNowTime());
+        foodMapper.insertFood(food);
+        return new ResponseEntity(RespCode.SUCCESS);
     }
+
 
 
     public Integer getStoreid() {
