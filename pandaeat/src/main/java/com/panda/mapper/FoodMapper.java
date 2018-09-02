@@ -17,10 +17,10 @@ public interface FoodMapper {
     List<Food> selectFoodAllData();
 
     @Select("select id,storeid,name,price,detail,catid,status,compressimg,realsales from pe_food where isdelete=0 " +
-            "and status=0 and storeid=#{storeid} order by addtime desc")
+            "and status=1 and storeid=#{storeid} order by addtime desc")
     List<FoodForCMS> selectFoodCMSList(Integer storeid);
 
-    @Select("select * from pe_food where isdelete=0 and status=0 and storeid=#{storeid} and id=#{id} limit 1")
+    @Select("select * from pe_food where isdelete=0 and status=1 and storeid=#{storeid} and id=#{id} limit 1")
     Food selectSingleFood(Integer storeid,Integer id);
 /*private Integer id;
     private Integer storeid;
@@ -46,17 +46,4 @@ public interface FoodMapper {
             "#{food.compressimg},#{food.img},#{food.videourl},#{food.realsales},#{food.goodsnums})")
     @Options(useGeneratedKeys = true, keyProperty = "user.id")
     void insertFood(@Param("food")Food food);
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
