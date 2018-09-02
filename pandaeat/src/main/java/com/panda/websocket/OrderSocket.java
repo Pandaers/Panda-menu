@@ -6,9 +6,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageHelper;
 import com.panda.common.response.RespCode;
 import com.panda.common.response.ResponseEntity;
+import com.panda.mapper.FoodMapper;
 import com.panda.mapper.OrderMapper;
+import com.panda.model.FoodForCMS;
 import com.panda.model.OrderForCMS;
 import com.panda.service.catNameReform.CatNameReform;
+import com.panda.service.foodNameReform.FoodNameReform;
+import com.panda.service.getCatMap.GetCatMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javax.websocket.*;
@@ -16,6 +20,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
@@ -40,30 +45,32 @@ public class OrderSocket {
 
     static  OrderMapper orderMapper;
 
-    static  CatNameReform catNameReform;
+
+    static FoodNameReform foodNameReform;
 
     @Autowired
-    public OrderSocket(OrderMapper orderMapper,  CatNameReform catNameReform){
+    public OrderSocket(OrderMapper orderMapper, FoodNameReform foodNameReform){
         this.orderMapper = orderMapper;
-        this.catNameReform = catNameReform;
+      this.foodNameReform = foodNameReform;
     }
 
     public OrderSocket(){}
 
 
     public List<OrderForCMS> getData(int currentPage,Integer storeid){
+
         List<OrderForCMS> result = new ArrayList();
         PageHelper.startPage(currentPage, 20);
         result=orderMapper.selectOrderForCMS(storeid);
 
         if(result==null){
-           return null;
+            return null;
         }
         for(OrderForCMS list:result){
-            list.setOrdercontent(catNameReform.catNameReform(list.getOrdercontent()));
+            list.setOrdercontent(foodNameReform.foodNameReform(list.getOrdercontent(),storeid));
         }
 
-        return  result;
+        return result;
     }
 
 
