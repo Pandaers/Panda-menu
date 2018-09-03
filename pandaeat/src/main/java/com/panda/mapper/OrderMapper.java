@@ -60,8 +60,8 @@ public interface OrderMapper {
     @Update("update pe_order set delstatue=1 where orderid=#{orderid}")
     void delOrderByOrderid(@Param("orderid") Integer orderid);
 
-    @Select("select id,name from pe_food where storeid=#{storeid} and status=0 and isdelete=0 order by addtime desc")
-    List<FoodName> foodNameReform (Integer storeid);
+    @Select("select id,name from pe_food where storeid=#{storeid} and status=1 and isdelete=0 order by addtime desc")
+    List<FoodName> foodNameReform (@Param("storeid")Integer storeid);
 
 }
 
