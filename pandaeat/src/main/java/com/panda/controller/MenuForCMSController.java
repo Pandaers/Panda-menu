@@ -10,6 +10,7 @@ import com.panda.model.FoodForCMS;
 import com.panda.model.RequestOrder;
 import com.panda.service.getCatMap.GetCatMap;
 import com.panda.service.time.TimeUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,7 +52,7 @@ public class MenuForCMSController {
      * 返回所选的菜品详情
      * */
     @RequestMapping(value = "/CMS/SingleMenu")
-    public ResponseEntity selectSingleMenu(Integer storeid,Integer id){
+    public ResponseEntity selectSingleMenu(@Param("storeid") Integer storeid, @Param("id") Integer id){
         //得到菜品名int转string对应map
         Map<Integer, String> catmap = getCatMap.getCatMap();
         Food result = foodMapper.selectSingleFood(storeid,id);

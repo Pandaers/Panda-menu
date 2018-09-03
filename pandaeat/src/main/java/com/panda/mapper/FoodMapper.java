@@ -18,10 +18,10 @@ public interface FoodMapper {
 
     @Select("select id,storeid,name,price,detail,catid,status,compressimg,realsales from pe_food where isdelete=0 " +
             "and status=1 and storeid=#{storeid} order by addtime desc")
-    List<FoodForCMS> selectFoodCMSList(Integer storeid);
+    List<FoodForCMS> selectFoodCMSList(@Param("storeid") Integer storeid);
 
     @Select("select * from pe_food where isdelete=0 and status=1 and storeid=#{storeid} and id=#{id} limit 1")
-    Food selectSingleFood(Integer storeid,Integer id);
+    Food selectSingleFood(@Param("storeid") Integer storeid,@Param("id") Integer id);
 /*private Integer id;
     private Integer storeid;
     private String name;
