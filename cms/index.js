@@ -56,10 +56,64 @@ showdatainbord =  function(res){
     console.log(data.orderdata)
     var str = "";
     for (let index = 0; index < data.orderdata.length; index++) {
+
+        switch( data.orderdata[index].orderstatue){
+            case 0 :{
+                data.orderdata[index].orderstatue = "待确认"
+                break;
+            }
+            case 1 :{
+                data.orderdata[index].orderstatue = "订单进行中"
+                break;
+            }
+            case 2 :{
+                data.orderdata[index].orderstatue = "订单取消"
+                break;
+            }
+            case 3 :{
+                data.orderdata[index].orderstatue = "订单结束"
+                break;
+            }
+        }
+
+        switch(  data.orderdata[index].payway){
+            case 0 :{
+                data.orderdata[index].payway = "未支付"
+                break;
+            }
+            case 1 :{
+                data.orderdata[index].payway = "支付宝支付"
+                break;
+            }
+            case 2 :{
+                data.orderdata[index].payway= "微信支付"
+                break;
+            }
+            case 3 :{
+                data.orderdata[index].payway = "现金支付"
+                break;
+            }
+            case 4 :{
+                data.orderdata[index].payway = "银行卡/信用卡支付"
+                break;
+            }
+        }
+
+        switch( data.orderdata[index].dishstatue){
+            case 0 :{
+                data.orderdata[index].dishstatue = "未上菜"
+                break;
+            }
+            case 1 :{
+                data.orderdata[index].dishstatue = "已上菜"
+                break;
+            }
+        }
+       
         var con = " <tr><td>" + data.orderdata[index].orderid +
             "</td><td style='width: 30%; text-align: justify'>" + data.orderdata[index].ordercontent + "</td><td>" + data.orderdata[index].tips + "</td>"
             + "<td>" + data.orderdata[index].seatid + "</td>"
-            + " <td><span class='badge badge-info'>" + data.orderdata[index].dishstatue + "</span><br><span class='badge badge-success'>" + data.orderdata[index].orderstatue + "</span><br><span class='badge badge-success'>" + data.orderdata[index].payway + "</span></td>" +
+            + " <td><span class='badge badge-info'>" + data.orderdata[index].dishstatue + "</span><br><span class='badge badge-success'>" + data.orderdata[index].orderstatue + "</span><br><span class='badge badge-warning'>" + data.orderdata[index].payway + "</span></td>" +
             " <td><div class='sparkbar'  data.orderdata-color='#00a65a'  data.orderdata-height='20'>" + data.orderdata[index].createtime + "--" + data.orderdata[index].endtime + "</div></td></tr>"
             str = str + con
     }

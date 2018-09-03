@@ -20,16 +20,12 @@ public class FoodNameReformmpl implements FoodNameReform{
         JSONObject jsonObject = JSONObject.parseObject(intFoodName);
         Map<String,Object> tempmap = (Map<String,Object>)jsonObject;
 
-       Map<Integer,String> foodNameMap=getFoodNameMap.getFoodNameMap(storeid);
+        Map<Integer,String> foodNameMap=getFoodNameMap.getFoodNameMap(storeid);
         Map<String,Object> resultMap= new HashMap();
 
         for(Map.Entry<String, Object> entry : tempmap.entrySet()){
             resultMap.put(foodNameMap.get(Integer.parseInt(entry.getKey())),entry.getValue());
-
         }
         return JSON.toJSONString(resultMap);
-
     }
-
-
 }

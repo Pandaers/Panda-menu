@@ -44,7 +44,8 @@ public class OrderForCMSController {
             return new ResponseEntity(RespCode.ERROR);
         }
         for(OrderForCMS list:result){
-            list.setOrdercontent(foodNameReform.foodNameReform(list.getOrdercontent(),storeid));
+            //转化名字
+          //  list.setOrdercontent(foodNameReform.foodNameReform(list.getOrdercontent(),storeid));
         }
 
         return new ResponseEntity(RespCode.SUCCESS,result);
