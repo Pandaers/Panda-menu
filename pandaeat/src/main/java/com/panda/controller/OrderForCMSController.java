@@ -37,6 +37,7 @@ public class OrderForCMSController {
     @RequestMapping(value = "CMS/pendingOrder")
     public ResponseEntity selectOrderListForCMS(Integer currentPage,Integer storeid){
         List<OrderForCMS> result = new ArrayList();
+        //对result分页
         PageHelper.startPage(currentPage, 20);
         result=orderMapper.selectOrderForCMS(storeid);
 
@@ -44,7 +45,7 @@ public class OrderForCMSController {
             return new ResponseEntity(RespCode.ERROR);
         }
         for(OrderForCMS list:result){
-            //转化名字
+            //转化订单详情为实际菜品名
            list.setOrdercontent(foodNameReform.foodNameReform(list.getOrdercontent(),storeid));
         }
 
@@ -56,12 +57,14 @@ public class OrderForCMSController {
     @RequestMapping(value = "CMS/AllOrder")
     public ResponseEntity selectAllOrderListForCMS(Integer currentPage,Integer storeid){
         List<OrderForCMS> result = new ArrayList();
+        //对result分页
         PageHelper.startPage(currentPage, 20);
         result=orderMapper.selectAllOrderForCMS(storeid);
         if(result==null){
             return new ResponseEntity(RespCode.ERROR);
         }
         for(OrderForCMS list:result){
+            //转化订单详情为实际菜品名
             list.setOrdercontent(foodNameReform.foodNameReform(list.getOrdercontent(),storeid));
         }
         return new ResponseEntity(RespCode.SUCCESS,result);

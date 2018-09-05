@@ -23,4 +23,14 @@ public class TimeUtilImpl implements TimeUtil {
         String nowtime = format.format(date);
         return nowtime;
     }
+    /*
+    * 返回年月日格式时间
+    * */
+    public String getYearToDay(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String nowtime = format.format(date);
+        return nowtime;
+    }
 }

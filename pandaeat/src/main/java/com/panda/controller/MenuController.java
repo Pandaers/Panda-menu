@@ -40,7 +40,7 @@ public class MenuController {
         Map result = new HashMap();
 
         //得到菜品名int转string对应map
-        Map<Integer, String> catmap = getCatMap.getCatMap();
+        Map<Integer, String> catmap = getCatMap.getCatMap(Integer.parseInt(storeid));
 
         result.put("nickname",store.getNickname());
         result.put("avatar",store.getAvatar());

@@ -38,6 +38,12 @@ public interface UserMapper {
     @Select("select * from pe_user where openid=#{openid} LIMIT 1")
     User selectUersDataByOpenId(@Param("openid")String openid);
 
+    /*
+    * 返回今日新增的用户数
+    * */
+    @Select("select count(*) from pe_user where createtime>#{today} and storeid=#{storeid}")
+    Integer countNewUserOfToday(@Param("storeid")Integer storeid,@Param("today")String today);
+
 
 
 

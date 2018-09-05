@@ -6,5 +6,8 @@ import java.util.Map;
 
 @Service
 public interface GetCatMap {
-    Map<Integer, String> getCatMap();
+    /*
+    * 功能：传入商店id，返回一个菜品类别id与实际菜品名的对照Map
+    * */
+    Map<Integer, String> getCatMap(Integer storeid);
 }

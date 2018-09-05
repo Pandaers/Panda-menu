@@ -14,12 +14,12 @@ public class CatNameReformmpl implements CatNameReform{
     @Autowired
     GetCatMap getCatMap;
 
-    public String catNameReform(String intCat){
+    public String catNameReform(String intCat,Integer storeid){
         JSONObject jsonObject = JSONObject.parseObject(intCat);
         Map<String,Object> tempmap = (Map<String,Object>)jsonObject;
 
         //得到菜品名int转string对应map
-        Map<Integer, String> catmap = getCatMap.getCatMap();
+        Map<Integer, String> catmap = getCatMap.getCatMap(storeid);
         Map<String,Object> resultMap= new HashMap();
 
         for(Map.Entry<String, Object> entry : tempmap.entrySet()){

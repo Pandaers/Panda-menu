@@ -39,7 +39,7 @@ public class MenuForCMSController {
     public ResponseEntity selectMenuList(Integer storeid){
         List<FoodForCMS> result =foodMapper.selectFoodCMSList(storeid);
         //得到菜品名int转string对应map
-        Map<Integer, String> catmap = getCatMap.getCatMap();
+        Map<Integer, String> catmap = getCatMap.getCatMap(storeid);
         if(result.size()==0){
             return new ResponseEntity(RespCode.SUCCESS,null);
         }
@@ -54,7 +54,8 @@ public class MenuForCMSController {
     @RequestMapping(value = "/CMS/SingleMenu")
     public ResponseEntity selectSingleMenu(@Param("storeid") Integer storeid, @Param("id") Integer id){
         //得到菜品名int转string对应map
-        Map<Integer, String> catmap = getCatMap.getCatMap();
+        Map<Integer, String> catmap = getCatMap.getCatMap(storeid);
+
         Food result = foodMapper.selectSingleFood(storeid,id);
         if (result==null){
             return new ResponseEntity(RespCode.WRONG);
@@ -63,14 +64,16 @@ public class MenuForCMSController {
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
     /*
-    * ajax传回类别表（CatList）
+    * ajax返回类别表（CatList）
     * */
     @RequestMapping(value = "/CMS/allCatName")
     public ResponseEntity allCatName(Cat data){
-        List<Cat> result=catMapper.selectAllCatData();
+        List<Cat> result=catMapper.selectAllCatData(storeid);
         return new ResponseEntity(RespCode.SUCCESS,result);
     }
-
+    /*
+    * 添加菜品
+    * */
     @RequestMapping(value = "/CMS/AddMenu")
     public ResponseEntity selectSingleMenu(Food food){
         food.setAddtime(timeUtil.getNowTime());

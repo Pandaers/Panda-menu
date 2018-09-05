@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 public class GetCatMapmpl implements GetCatMap {
     @Autowired
     CatMapper catMapper;
-    public  Map<Integer, String> getCatMap(){
-    Map<Integer, String> catmap = catMapper.selectAllCatData().stream().collect(Collectors.toMap(Cat::getCatid, Cat::getCatname));
+    public  Map<Integer, String> getCatMap(Integer storeid){
+    Map<Integer, String> catmap = catMapper.selectAllCatData(storeid).stream().collect(Collectors.toMap(Cat::getCatid, Cat::getCatname));
     return catmap;
     }
 }

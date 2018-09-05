@@ -52,16 +52,37 @@ public interface OrderMapper {
     Order selectSingleOrderForCMS(@Param("orderid") Integer orderid,@Param("storeid") Integer storeid);
 
     /*
-     * 删除单个订单
+     * 删除单个订单（计数验证）
      * */
     @Select("SELECT COUNT(*) FROM pe_order WHERE orderid=#{orderid} and delstatue=0")
     Integer countOrderByOrderid(@Param("orderid") Integer orderid);
-
+    /*
+     * 删除单个订单
+     * */
     @Update("update pe_order set delstatue=1 where orderid=#{orderid}")
     void delOrderByOrderid(@Param("orderid") Integer orderid);
 
+    /*
+    * 选择菜品的名字与id
+    * */
     @Select("select id,name from pe_food where storeid=#{storeid} and status=1 and isdelete=0 order by addtime desc")
     List<FoodName> foodNameReform (@Param("storeid")Integer storeid);
+
+    /*
+    * 返回该商店的总订单数
+    * */
+    @Select("select count(*) from pe_order where storeid=#{storeid} and delstatue=0")
+    Integer countAllOrder(@Param("storeid")Integer storeid);
+
+    /*
+    * 返回今日订单数
+    * */
+    @Select("select count(*) from pe_order where storeid=#{storeid} and delstatue=0 and createtime>#{today}")
+    Integer countOrderOfToday(@Param("storeid")Integer storeid,@Param("today")String today);
+    /*
+    * 
+    * */
+
 
 }
 
