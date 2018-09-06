@@ -59,7 +59,6 @@ Page({
         orderprice: app.globalData.order.totalPrice
       }
     })
-    wx.showNavigationBarLoading()
   },
   callbackAddress(addr_id) {
     var that = this

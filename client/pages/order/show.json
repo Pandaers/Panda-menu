@@ -1,5 +1,10 @@
 {
-  "navigationBarTitleText": "提交订单",
+    "navigationBarBackgroundColor": "#f4f4f4",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "提交订单",
+    "backgroundColor": "#f4f4f4",
+    "backgroundTextStyle": "light",
+  
   "usingComponents": {
     "i-button": "../../dist/button/index",
     "i-cell-group": "../../dist/cell-group/index",

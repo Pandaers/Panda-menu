@@ -32,10 +32,10 @@
   line-height: 48rpx;
 }
 .wux-avatar--large {
-  width: 200rpx;
-  height: 200rpx;
-  line-height: 200rpx;
-  border-radius: 100rpx;
+  width: 160rpx;
+  height: 160rpx;
+  line-height: 160rpx;
+  border-radius: 80rpx;
   font-size: 48rpx;
   position: fixed;
   z-index: 20;

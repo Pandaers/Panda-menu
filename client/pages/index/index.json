@@ -1,6 +1,10 @@
 {
-  "navigationBarTitleText": "微信自助点菜",
-  
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "微信自助点菜",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light",
+    "disableScroll":true,
   "usingComponents": {
     "i-button": "../../dist/button/index",
         "i-cell-group": "../../dist/cell-group/index",

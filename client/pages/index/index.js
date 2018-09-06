@@ -39,7 +39,7 @@ Page({
     info:
       {
         nickname: "小皮-皮皮虾",
-        avatar: "http:xxxx",
+        avatar: "http://i2.tiimg.com/655782/4f5357e8aef19692.jpg",
         mobile: "17785854642",
         address: "裕华路27号河北科技大学",
         selltime: "上午八点-下午九点",

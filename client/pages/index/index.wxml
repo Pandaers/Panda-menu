@@ -25,10 +25,6 @@
         <wux-tag color="#87d068">绿色健康</wux-tag>
         <wux-tag color="#108ee9">价格实惠</wux-tag>
     </view>
-
-
-<i-rate class="shop-info-star" value="{{info.severscore}}" size="28">
-        </i-rate>
 </view>
 
         </view>
@@ -91,7 +87,7 @@
                 <view class="text-small grey-color">您已经点了{{order.totalNum}}份菜</view>
               </view>
             </view>
-            <button disabled="{{loading}}" loading="{{loading}}" class="weui-btn menu-cart__btn" type="primary" bindgetuserinfo='onAddQuasiOrder' open-type='getUserInfo'>
+            <button disabled="{{loading}}" loading='{{loading}}' class="weui-btn menu-cart__btn" type="primary" bindgetuserinfo='onAddQuasiOrder' open-type='getUserInfo'>
               选好了
             </button>
           </view>

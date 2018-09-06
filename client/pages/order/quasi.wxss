@@ -1,5 +1,7 @@
 /* pages/order/quasi.wxss */
-
+page{
+  background-color:#f4f4f4;
+}
 .quasi {
     padding-bottom: 50px;
 }
