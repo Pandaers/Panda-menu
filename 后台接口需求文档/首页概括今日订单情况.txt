@@ -1,0 +1,4 @@
+地址：/CMS/survey
+参数：string storeid
+返回形式：{"code":0,"msg":"请求成功","data":{"allOrder":"4","newUser":"0","newOrder":"0","turnover":"0"}}
+(注：turnover为今日营业额)

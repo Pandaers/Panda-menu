@@ -27,12 +27,15 @@ public class surveyForCMS {
     @RequestMapping(value = "/CMS/survey")
     public ResponseEntity survey(String storeid){
         Map<String,String> result =new HashMap();
-        String today=timeUtil.getYearToDay();
-        result.put("newOrder",String.valueOf(orderMapper.countOrderOfToday(Integer.parseInt(storeid),today)));
+        String todaydate=timeUtil.getYearToDay();
+        result.put("newOrder",String.valueOf(orderMapper.countOrderOfToday(Integer.parseInt(storeid),todaydate)));
         result.put("allOrder",String.valueOf(orderMapper.countAllOrder(Integer.parseInt(storeid))));
-        result.put("newUser",String.valueOf(userMapper.countNewUserOfToday(Integer.parseInt(storeid),today)));
-
-        result.put("turnover",overviewMapper.selectTurnover(today));
+        result.put("newUser",String.valueOf(userMapper.countNewUserOfToday(Integer.parseInt(storeid),todaydate)));
+        result.put("turnover",overviewMapper.selectTurnover(todaydate));
+        if(result.get("turnover")==null){
+            result.put("turnover","0");
+            overviewMapper.insertOverview(Integer.parseInt(storeid),todaydate,0,timeUtil.getNowTime());
+        }
         return new ResponseEntity(RespCode.SUCCESS,result);
 
     }
