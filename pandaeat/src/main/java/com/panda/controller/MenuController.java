@@ -7,7 +7,6 @@ import com.panda.mapper.StoreMapper;
 import com.panda.model.Food;
 import com.panda.model.Store;
 import com.panda.service.getCatMap.GetCatMap;
-import com.panda.service.getCatMap.GetCatMapmpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

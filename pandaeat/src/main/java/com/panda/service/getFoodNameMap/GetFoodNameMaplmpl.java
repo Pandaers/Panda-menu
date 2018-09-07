@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class GetFoodNameMapmpl implements GetFoodNameMap{
+public class GetFoodNameMaplmpl implements GetFoodNameMap{
     @Autowired
     OrderMapper orderMapper;
     public Map<Integer,String> getFoodNameMap(Integer storeid){

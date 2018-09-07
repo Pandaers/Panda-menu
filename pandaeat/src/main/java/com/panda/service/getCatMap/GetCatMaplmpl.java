@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class GetCatMapmpl implements GetCatMap {
+public class GetCatMaplmpl implements GetCatMap {
     @Autowired
     CatMapper catMapper;
     public  Map<Integer, String> getCatMap(Integer storeid){

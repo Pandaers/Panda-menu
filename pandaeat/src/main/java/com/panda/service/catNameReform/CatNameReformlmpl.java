@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class CatNameReformmpl implements CatNameReform{
+public class CatNameReformlmpl implements CatNameReform{
     @Autowired
     GetCatMap getCatMap;
 
