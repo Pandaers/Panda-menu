@@ -80,9 +80,19 @@ public interface OrderMapper {
     @Select("select count(*) from pe_order where storeid=#{storeid} and delstatue=0 and createtime>#{today}")
     Integer countOrderOfToday(@Param("storeid")Integer storeid,@Param("today")String today);
     /*
-    * 
+    * 返回订单金额
     * */
-
+    @Select("select orderprice from pe_order where orderid=#{orderid}")
+    String selectOrderprice(@Param("orderid")Integer orderid);
+    /*
+    * 更新数据
+    * */
+    @Update("update pe_order set tips=#{order.tips},seatid=#{order.seatid}," +
+            "orderstatue=#{order.orderstatue},dishstatue=#{order.dishstatue} where orderid=#{order.orderid}")
+    void updateOrder(@Param("order")Order order);
+    /*
+    *
+    * */
 
 }
 

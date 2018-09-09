@@ -3,7 +3,7 @@ package com.panda.service.AmountUtils;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AmountUtilslmpl {
+public class AmountUtilslmpl implements AmoutUtils{
     /**金额为分的格式 */
     public static final String CURRENCY_FEN_REGEX = "\\-?[0-9]+";
     public static final String CURRENCY_YUAN_REGEX = "[1-9]{1}[0-9]*[.。][0-9]{2}";
@@ -15,7 +15,10 @@ public class AmountUtilslmpl {
      * @return
      * @throws Exception
      */
-    public String changeF2Y(Long amount) throws Exception{
+    public String changeF2Y(Integer amount) throws Exception{
+        if(amount==null){
+
+        }
         if(!amount.toString().matches(CURRENCY_FEN_REGEX)) {
             throw new Exception("金额格式有误");
         }

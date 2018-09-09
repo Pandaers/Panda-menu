@@ -4,9 +4,11 @@ import com.github.pagehelper.PageHelper;
 import com.panda.common.response.RespCode;
 import com.panda.common.response.ResponseEntity;
 import com.panda.mapper.OrderMapper;
+import com.panda.mapper.OverviewMapper;
 import com.panda.model.FoodName;
 import com.panda.model.Order;
 import com.panda.model.OrderForCMS;
+import com.panda.service.AmountUtils.AmoutUtils;
 import com.panda.service.foodNameReform.FoodNameReform;
 import com.panda.service.time.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,10 @@ public class OrderForCMSController {
     TimeUtil timeUtil;
     @Autowired
     FoodNameReform foodNameReform;
+    @Autowired
+    AmoutUtils amoutUtils;
+    @Autowired
+    OverviewMapper overviewMapper;
 
 
 
@@ -96,6 +102,23 @@ public class OrderForCMSController {
             return new ResponseEntity(RespCode.ERROR);
         }
         orderMapper.delOrderByOrderid(orderid);
+        return new ResponseEntity(RespCode.SUCCESS);
+    }
+    /*
+    * 更新所选订单
+    * */
+    @RequestMapping(value = "CMS/updateOrder")
+    public  ResponseEntity delOrder(Order order) throws Exception {
+        orderMapper.updateOrder(order);
+        if(order.getOrderstatue()==3){
+
+            Integer turnover=amoutUtils.changeY2F(orderMapper.selectOrderprice(order.getOrderid()));
+            String todaydate=order.getCreatetime().substring(0,10);
+            if(overviewMapper.countOverviewExist(order.getStoreid(),todaydate)>0)
+                overviewMapper.updateOverview(order.getStoreid(),todaydate,turnover,timeUtil.getNowTime());
+            else
+                overviewMapper.insertOverview(order.getStoreid(),todaydate,turnover,timeUtil.getNowTime());
+        }
         return new ResponseEntity(RespCode.SUCCESS);
     }
 

@@ -1,4 +1,4 @@
-﻿1.请求最新订单 即才创建并没有完成支付和上菜的订单		127.0.0.1:8080/CMS/pendingOrder?currentPage=2(注：超过最大页数返回最后一页，小于1返回第一页)
+﻿1.请求最新订单，即才创建并没有完成支付和上菜的订单		127.0.0.1:8080/CMS/pendingOrder?currentPage=2(注：超过最大页数返回最后一页，小于1返回第一页)
 	订单号						private Integer orderid;
 	订单的详情 比如 馒头1个，西瓜两个，德州扒鸡一个	private String ordercontent;
 	订单备注 比如 加婉米饭				private String tips;
@@ -8,7 +8,7 @@
 	订单创建时间 					private String createtime;	
 	
 
-2. 请求所有订单						127.0.0.1:8080/CMS/AllOrder?currentPage=1 
+2. 请求所有订单						127.0.0.1:8080/CMS/AllOrder?currentPage=1&storeid=1
 	订单号						private Integer orderid;
 	订单的详情 比如 馒头1个，西瓜两个，德州扒鸡一个	private String ordercontent;
 	订单备注 比如 加婉米饭				private String tips;
@@ -20,26 +20,26 @@
 
 3.提供订单删除的接口 我传一个订单的id 名字叫作 orderid		127.0.0.1:8080/CMS/delOrder?orderid=1000
 
-4.提供编辑的按钮						127.0.0.1:8080/CMS/SingleOrder?orderid=1000
-	传过去内容是 					只需要orderid就行
-		orderid
-		ordertips (订单备注)
-		ordertable (订单桌号)
-		paystate (支付状态)
-		serverstate (订单桌号)
+4.编辑一个订单						127.0.0.1:8080/CMS/SingleOrder?orderid=1000
 	接口4返回如下：
-    private Integer storeid;
-    private Integer seatid;
-    private Integer orderid;
-    private Integer userid;
-    private String createtime;
-    private String ordercontent;
-    private String orderprice;
-    private Integer customernum;
-    private short orderstatue;
-    private String endtime;
-    private short payway;
-    private String tips;
-    private short dishstatue;
-    private short delstatue;
+	商店						idprivate Integer storeid;
+	座位号						private Integer seatid;
+	订单号						private Integer orderid;
+    	用户						idprivate Integer userid;
+    	创建时间						private String createtime;
+    	订单内容						private String ordercontent;
+    	订单价格						private String orderprice;
+    	顾客数量						private Integer customernum;
+    	订单状态						private short orderstatue;
+    	结束时间						private String endtime;
+    	支付方式						private short payway;
+    	备注						private String tips;
+    	是否上菜						private short dishstatue;
+    	删除状态						private short delstatue;
 
+
+5.更新订单（接口4的提交按钮）				127.0.0.1:8080/CMS/SingleOrder?（目前需要接受的参数为下方列表）
+	备注						tips
+	座位号						seatid
+	订单状态						orderstatue
+	是否上菜						dishstatue
