@@ -80,6 +80,14 @@ public class MenuForCMSController {
         foodMapper.insertFood(food);
         return new ResponseEntity(RespCode.SUCCESS);
     }
+    /*
+    * 更新菜品
+    * */
+    @RequestMapping(value = "/CMS/updateFood")
+    public ResponseEntity updateFood(Food food){
+
+
+    }
 
 
 
