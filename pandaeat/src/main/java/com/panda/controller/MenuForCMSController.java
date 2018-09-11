@@ -1,5 +1,6 @@
 package com.panda.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.panda.common.response.RespCode;
 import com.panda.common.response.ResponseEntity;
 import com.panda.mapper.CatMapper;
@@ -32,6 +33,7 @@ public class MenuForCMSController {
     TimeUtil timeUtil;
     Integer storeid;
     Integer id;
+    Integer currentPage;
     /*
     * 返回该饭店所有菜品
     * */
@@ -85,11 +87,47 @@ public class MenuForCMSController {
     * */
     @RequestMapping(value = "/CMS/updateFood")
     public ResponseEntity updateFood(Food food){
+        foodMapper.updateFood(food);
+        return new ResponseEntity(RespCode.SUCCESS);
+    }
+    /*
+    * 通过name/detail模糊查找菜品
+    * */
+    @RequestMapping(value = "/CMS/searchFood")
+    public ResponseEntity updateFood(Integer storeid,String searchString,Integer currentPage){
+        if(currentPage==0||currentPage==null){
+            currentPage=1;
+        }
+        PageHelper.startPage(currentPage, 20);
+        List<FoodForCMS> result =foodMapper.selectFoodCMSListLikeString(storeid,searchString);
 
+        //得到菜品名int转string对应map
+        Map<Integer, String> catmap = getCatMap.getCatMap(storeid);
+        if(result.size()==0){
+            return new ResponseEntity(RespCode.SUCCESS,null);
+        }
+        for(FoodForCMS i:result){
+            i.setCatname(catmap.get(i.getCatid()));
+        }
 
+        return new ResponseEntity(RespCode.SUCCESS,result);
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
 
     public Integer getStoreid() {
         return storeid;

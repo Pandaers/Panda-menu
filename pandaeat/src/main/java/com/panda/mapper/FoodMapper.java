@@ -43,8 +43,9 @@ public interface FoodMapper {
     /*
      * 更新单个菜品
      * */
-    @Update("update pe_food set name=#{food.name},price=#{food.price},originalprice=#{food.originalprice},detail=#{food.detail}," +
-            "catid=#{food.catid},status=#{food.status},score=#{food.score},virtualsales=#{food.virtualsales},compressimg=#{food.compressimg}," +
+    @Update("update pe_food set name=#{food.name},price=#{food.price},originalprice=#{food.originalprice}," +
+            "detail=#{food.detail},catid=#{food.catid},status=#{food.status},score=#{food.score}," +
+            "virtualsales=#{food.virtualsales},compressimg=#{food.compressimg}," +
             "img=#{food.img},videourl=#{food.videourl},goodsnums=#{food.goodsnums} where id=#{food.id})")
     void updateFood(@Param("food")Food food);
     /*
@@ -52,6 +53,6 @@ public interface FoodMapper {
     * */
     @Select("select id,storeid,name,price,detail,catid,status,compressimg,realsales from pe_food where isdelete=0 " +
             "and status=1 and storeid=#{storeid} and (name like #{searchString} or detail like #{searchString}) order by addtime desc")
-    List<FoodForCMS> selectFoodCMSListLikeString(@Param("searchString") String searchString);
+    List<FoodForCMS> selectFoodCMSListLikeString(@Param("storeid")Integer storeid,@Param("searchString") String searchString);
 
 }

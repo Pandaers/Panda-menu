@@ -36,6 +36,7 @@ spring:
     userGlobalDataSourceStat: true
     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
 #    schema:
 #      - classpath:department.sql
 #

@@ -30,6 +30,11 @@ public class PageHelperConfig {
          */
         p.setProperty("reasonable", "true");
         pageHelper.setProperties(p);
+        p.setProperty("helperDialect","mysql");
+        p.setProperty("reasonable","true");
+        p.setProperty("supportMethodsArguments","true");
+        p.setProperty("params","count=countSql");
+        pageHelper.setProperties(p);
         return pageHelper;
     }
 }
