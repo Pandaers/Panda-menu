@@ -8,6 +8,7 @@ import com.panda.mapper.UserMapper;
 import com.panda.service.AmountUtils.AmoutUtils;
 import com.panda.service.time.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,7 @@ public class surveyForCMS {
     OverviewMapper overviewMapper;
     @Autowired
     AmoutUtils amoutUtils;
-
+    @Transactional
     @RequestMapping(value = "/CMS/survey")
     public ResponseEntity survey(String storeid) throws Exception {
         Map<String,String> result =new HashMap();

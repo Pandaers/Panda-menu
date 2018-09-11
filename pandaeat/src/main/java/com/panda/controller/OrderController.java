@@ -8,6 +8,7 @@ import com.panda.model.Order;
 import com.panda.model.RequestOrder;
 import com.panda.service.time.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class OrderController {
     OrderMapper orderMapper;
     @Autowired
     TimeUtil timeUtil;
-
+    @Transactional
     @RequestMapping(value = "/order")
     public ResponseEntity insertUser(RequestOrder data){
         // 需要插入Integer customernum;

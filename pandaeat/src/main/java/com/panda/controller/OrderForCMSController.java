@@ -12,6 +12,7 @@ import com.panda.service.AmountUtils.AmoutUtils;
 import com.panda.service.foodNameReform.FoodNameReform;
 import com.panda.service.time.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -96,6 +97,7 @@ public class OrderForCMSController {
     /*
     * 删除所选订单(update delstatue = 1)
     * */
+    @Transactional
     @RequestMapping(value = "CMS/delOrder")
     public  ResponseEntity delOrder(Integer orderid){
         if(orderMapper.countOrderByOrderid(orderid)==0){
@@ -107,6 +109,7 @@ public class OrderForCMSController {
     /*
     * 更新所选订单
     * */
+    @Transactional
     @RequestMapping(value = "CMS/updateOrder")
     public  ResponseEntity delOrder(Order order) throws Exception {
         orderMapper.updateOrder(order);

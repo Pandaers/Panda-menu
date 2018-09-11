@@ -21,9 +21,6 @@ public class FoodController {
     public ResponseEntity getFoodMap(){
         List<Food> foodList=foodMapper.selectFoodAllData();
 
-
-
-
         Map result = new HashMap();
         Map goodsMap = new HashMap();
         for(Food list:foodList){

@@ -13,6 +13,7 @@ import com.panda.service.getCatMap.GetCatMap;
 import com.panda.service.time.TimeUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -93,6 +94,7 @@ public class MenuForCMSController {
     /*
     * 通过name/detail模糊查找菜品
     * */
+    @Transactional
     @RequestMapping(value = "/CMS/searchFood")
     public ResponseEntity updateFood(Integer storeid,String searchString,Integer currentPage){
         if(currentPage==0||currentPage==null){

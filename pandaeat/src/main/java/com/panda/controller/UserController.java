@@ -9,6 +9,7 @@ import com.panda.service.time.TimeUtil;
 import com.panda.service.wxapi.WxApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +38,7 @@ public class UserController {
     @Autowired
     WxApi wxApi;
     User user;
-
+    @Transactional
     @RequestMapping(value = "/login")
     public ResponseEntity insertUser(RequestUser data){
         //获取用户openid
