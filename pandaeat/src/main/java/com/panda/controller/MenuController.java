@@ -29,7 +29,9 @@ public class MenuController {
     StoreMapper storeMapper;
     @Autowired
     GetCatMap getCatMap;
-
+    /*
+    * 返回小程序菜单
+    * */
     @RequestMapping(value = "/menu")
     public ResponseEntity getfoodmenu(String storeid){
 

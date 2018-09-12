@@ -24,10 +24,11 @@ spring:
     timeBetweenEvictionRunsMillis: 60000
     # 配置一个连接在池中最小生存的时间，单位是毫秒
     minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
+    validationQuery: SELECT 1
     testWhileIdle: true
-    testOnBorrow: true
+    testOnBorrow: false
     testOnReturn: false
+
 
     poolPreparedStatements: true
     # 配置监控统计拦截的filters,去掉监控界面sql无法统计，‘wall’用于防火墙

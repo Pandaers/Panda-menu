@@ -16,7 +16,9 @@ import java.util.Map;
 public class FoodController {
     @Autowired
     FoodMapper foodMapper;
-
+    /*
+    *这是个啥
+    * */
     @RequestMapping(value = "/foodMap")
     public ResponseEntity getFoodMap(){
         List<Food> foodList=foodMapper.selectFoodAllData();

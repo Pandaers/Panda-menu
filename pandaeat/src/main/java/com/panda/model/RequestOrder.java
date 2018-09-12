@@ -13,6 +13,15 @@ public class RequestOrder {
     String orderprice;
     Integer customernum;
     short orderstatue;
+    String orderid;
+
+    public String getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
+    }
 
     public short getOrderstatue() {
         return orderstatue;

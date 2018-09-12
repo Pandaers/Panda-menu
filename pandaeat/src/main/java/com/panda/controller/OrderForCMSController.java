@@ -97,7 +97,6 @@ public class OrderForCMSController {
     /*
     * 删除所选订单(update delstatue = 1)
     * */
-    @Transactional
     @RequestMapping(value = "CMS/delOrder")
     public  ResponseEntity delOrder(Integer orderid){
         if(orderMapper.countOrderByOrderid(orderid)==0){
@@ -112,17 +111,22 @@ public class OrderForCMSController {
     @Transactional
     @RequestMapping(value = "CMS/updateOrder")
     public  ResponseEntity delOrder(Order order) throws Exception {
-        orderMapper.updateOrder(order);
-        if(order.getOrderstatue()==3){
+        try{
+            orderMapper.updateOrder(order);
+            if(order.getOrderstatue()==3){
 
-            Integer turnover=amoutUtils.changeY2F(orderMapper.selectOrderprice(order.getOrderid()));
-            String todaydate=order.getCreatetime().substring(0,10);
-            if(overviewMapper.countOverviewExist(order.getStoreid(),todaydate)>0)
-                overviewMapper.updateOverview(order.getStoreid(),todaydate,turnover,timeUtil.getNowTime());
-            else
-                overviewMapper.insertOverview(order.getStoreid(),todaydate,turnover,timeUtil.getNowTime());
+                Integer turnover=amoutUtils.changeY2F(orderMapper.selectOrderprice(order.getOrderid()));
+                String todaydate=order.getCreatetime().substring(0,10);
+                if(overviewMapper.countOverviewExist(order.getStoreid(),todaydate)>0)
+                    overviewMapper.updateOverview(order.getStoreid(),todaydate,turnover,timeUtil.getNowTime());
+                else
+                    overviewMapper.insertOverview(order.getStoreid(),todaydate,turnover,timeUtil.getNowTime());
+            }
+            return new ResponseEntity(RespCode.SUCCESS);
+        }catch (RuntimeException e){
+            return new ResponseEntity(RespCode.WARN);
         }
-        return new ResponseEntity(RespCode.SUCCESS);
+
     }
 
 

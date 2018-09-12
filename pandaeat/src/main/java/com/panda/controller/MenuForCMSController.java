@@ -77,24 +77,35 @@ public class MenuForCMSController {
     /*
     * 添加菜品
     * */
+    @Transactional
     @RequestMapping(value = "/CMS/AddMenu")
     public ResponseEntity selectSingleMenu(Food food){
-        food.setAddtime(timeUtil.getNowTime());
-        foodMapper.insertFood(food);
-        return new ResponseEntity(RespCode.SUCCESS);
+        try{
+            food.setAddtime(timeUtil.getNowTime());
+            foodMapper.insertFood(food);
+            return new ResponseEntity(RespCode.SUCCESS);
+        }catch (RuntimeException e){
+            return new ResponseEntity(RespCode.WARN);
+        }
+
     }
     /*
     * 更新菜品
     * */
+    @Transactional
     @RequestMapping(value = "/CMS/updateFood")
     public ResponseEntity updateFood(Food food){
-        foodMapper.updateFood(food);
-        return new ResponseEntity(RespCode.SUCCESS);
+        try{
+            foodMapper.updateFood(food);
+            return new ResponseEntity(RespCode.SUCCESS);
+        }catch (RuntimeException e){
+            return new ResponseEntity(RespCode.WARN);
+        }
+
     }
     /*
     * 通过name/detail模糊查找菜品
     * */
-    @Transactional
     @RequestMapping(value = "/CMS/searchFood")
     public ResponseEntity updateFood(Integer storeid,String searchString,Integer currentPage){
         if(currentPage==0||currentPage==null){

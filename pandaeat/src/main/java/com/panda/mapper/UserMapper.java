@@ -32,10 +32,11 @@ public interface UserMapper {
     @Options(useGeneratedKeys = true, keyProperty = "user.userid")
     void insertUserData(@Param("user")User user);
 
-    @Select("SELECT COUNT(openid) FROM pe_user WHERE openid=#{openid}")
-    Integer selectUersOpenId(@Param("openid")String openid);
+    @Select("SELECT COUNT(openid) FROM pe_user WHERE openid=#{openid} and storeid=#{storeid}")
+    Integer selectUersOpenId(@Param("openid")String openid,@Param("storeid")String storeid);
 
-    @Select("select * from pe_user where openid=#{openid} LIMIT 1")
+
+    @Select("select userid,nickname,openid from pe_user where openid=#{openid} LIMIT 1")
     User selectUersDataByOpenId(@Param("openid")String openid);
 
     /*

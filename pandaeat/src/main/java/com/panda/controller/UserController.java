@@ -37,16 +37,18 @@ public class UserController {
     //微信官方接口处理
     @Autowired
     WxApi wxApi;
-    User user;
     @Transactional
     @RequestMapping(value = "/login")
     public ResponseEntity insertUser(RequestUser data){
         //获取用户openid
 
         String openid  = wxApi.getOpenid(data.getCode());
+        if(openid==null||openid==""){
+            System.out.println("错了错了错了错了错了错了错了错了");
+        }
         System.out.println(openid);
         //做查询操作 看是否重复
-        if(userMapper.selectUersOpenId(openid)!=0){
+        if(userMapper.selectUersOpenId(openid,data.getStoreid())!=0){
             Map result = new HashMap();
             User user=userMapper.selectUersDataByOpenId(openid);
             result.put("userid",user.getUserid());
@@ -54,10 +56,11 @@ public class UserController {
             result.put("openid",openid);
             return new ResponseEntity(RespCode.SUCCESS,result);
         }
+        User user;
 
         //拟合要插入的数据
         try{
-            User user = new User(Integer.parseInt(data.getStoreid()),0,openid,timeUtil.getNowTime(),data.getNickname()
+            user = new User(Integer.parseInt(data.getStoreid()),0,openid,timeUtil.getNowTime(),data.getNickname()
                     ,data.getAvatar(),data.getMobile(),Short.parseShort(data.getGender()),0,"0");
         }
         catch (NumberFormatException e){

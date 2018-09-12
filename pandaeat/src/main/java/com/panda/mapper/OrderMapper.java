@@ -28,6 +28,7 @@ public interface OrderMapper {
             "values(#{order.storeid},#{order.seatid},#{order.orderid},#{order.userid}," +
             "#{order.createtime},#{order.ordercontent},#{order.orderprice},#{order.customernum}," +
             "#{order.orderstatue},#{order.endtime},#{order.payway})")
+    @Options(useGeneratedKeys = true, keyProperty = "order.orderid")
     void insertOrder(@Param("order") Order order);
 
     /*
