@@ -19,8 +19,8 @@ public class FoodController {
     /*
     *这是个啥
     * */
-    @RequestMapping(value = "/foodMap")
-    public ResponseEntity getFoodMap(){
+    @RequestMapping(value = "/catMap")
+    public ResponseEntity getcatMap(){
         List<Food> foodList=foodMapper.selectFoodAllData();
 
         Map result = new HashMap();

@@ -7,10 +7,12 @@ wxapp:
 
 spring:
   datasource:
+    #username: root
+    #password: admin
+    #url: jdbc:mysql://127.0.0.1:3306/pandaeat?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    #url: jdbc:mysql://192.168.179.131:3306/pandaeat?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
     username: pandaeat
-#    password: Welcome_1
     password: ZemYfRXKyCwLSZDf
-#    url: jdbc:mysql://192.168.179.131:3306/jdbc
     url: jdbc:mysql://120.78.174.107:3306/pandaeat?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
@@ -26,6 +28,7 @@ spring:
     minEvictableIdleTimeMillis: 300000
     validationQuery: SELECT 1
     testWhileIdle: true
+    autoReconnect: true
     testOnBorrow: false
     testOnReturn: false
 

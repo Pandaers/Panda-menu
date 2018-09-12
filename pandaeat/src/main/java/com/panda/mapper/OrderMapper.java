@@ -3,6 +3,7 @@ package com.panda.mapper;
 import com.panda.model.FoodName;
 import com.panda.model.Order;
 import com.panda.model.OrderForCMS;
+import com.panda.model.Ordercontent;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -92,8 +93,16 @@ public interface OrderMapper {
             "orderstatue=#{order.orderstatue},dishstatue=#{order.dishstatue} where orderid=#{order.orderid}")
     void updateOrder(@Param("order")Order order);
     /*
-    *
+    *根据用户id返回用户数据
     * */
+    @Select("select orderstatue,orderid,orderprice,createtime from pe_order where userid=#{userid}")
+    List<Ordercontent> selectOrderdataByUserid(@Param("userid")Integer userid);
+    /*
+    * 返回订单的详情
+    * */
+    @Select("select * from pe_order where orderid=#{orderid}")
+    Order selectSingleOrderById(@Param("orderid")Integer orderid);
+
 
 }
 

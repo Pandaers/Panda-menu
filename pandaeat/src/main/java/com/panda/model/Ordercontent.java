@@ -1,49 +1,40 @@
 package com.panda.model;
 
 public class Ordercontent {
-    private String orderid;
-    private String date;
-    private Integer totalprice;
-    private Integer payment;
-    private Integer state;
+    private Integer orderid;
+    private String createtime;
+    private String orderprice;
+    private Integer orderstatue;
 
-    public String getOrderid() {
+    public Integer getOrderid() {
         return orderid;
     }
 
-    public void setOrderid(String orderid) {
+    public void setOrderid(Integer orderid) {
         this.orderid = orderid;
     }
 
-    public String getDate() {
-        return date;
+    public String getCreatetime() {
+        return createtime;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
     }
 
-    public Integer getTotalprice() {
-        return totalprice;
+    public String getOrderprice() {
+        return orderprice;
     }
 
-    public void setTotalprice(Integer totalprice) {
-        this.totalprice = totalprice;
+    public void setOrderprice(String orderprice) {
+        this.orderprice = orderprice;
     }
 
-    public Integer getPayment() {
-        return payment;
+    public Integer getOrderstatue() {
+        return orderstatue;
     }
 
-    public void setPayment(Integer payment) {
-        this.payment = payment;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
+    public void setOrderstatue(Integer orderstatue) {
+        this.orderstatue = orderstatue;
     }
 }
