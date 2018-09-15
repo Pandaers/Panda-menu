@@ -146,6 +146,7 @@ Page({
     wx.login({
       success: function (res) {
         var code = res.code;
+        console.log(res)
         wx.request({
           url: app.requestUrls.menu,
           data: {
@@ -157,6 +158,7 @@ Page({
           success: function (res) {
             console.log(res.data)
             that.setData({ info: res.data.data})
+            app.globalData.storeAvatar=  res.data.data.avatar
             app.globalData.nickname = res.data.data.nickname
           },
           fail: function () {

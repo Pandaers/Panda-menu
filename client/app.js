@@ -110,14 +110,16 @@ App({
     order:{},
     userid:"1",
     orderid:"00100",
-    nickname:""
+    nickname:"",
+    storeAvatar:''
+
 
   },
   requestUrls:{
     login:"https://www.hcyang.top/login",
     menu:"https://www.hcyang.top/menu",
-    myorders: "https://www.hcyang.top/menu",
-    order: "https://www.hcyang.top/menu",
-    singleorder: "https://www.hcyang.top/menu"
+    myorders: "https://www.hcyang.top/myorders",
+    order: "https://www.hcyang.top/order",
+    singleorder: "https://www.hcyang.top/singleorder"
   }
 })

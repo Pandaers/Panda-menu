@@ -5,7 +5,7 @@ var initData = {
   page: 0,
   hasMore: true,
   loading: false,
-  list: [{ nickname: "少掌柜", storeid: '1000', state: 1, orderid: 'OR18018', orderprice: 548, createtime: '2018-07-06 14：26', avatar:'http://i4.fuimg.com/655782/adf1accea2bd8a82.jpg'}],
+  list: [{ state: 1, orderid: 'OR18018', orderprice: 548, createtime: '2018-07-06 14：26'}],
   loginInfo:{is_login:true}
 }
 

@@ -139,7 +139,7 @@ Page({
         var code = res.code;
         console.log(code)
         wx.request({
-          url: app.requestUrls.login,
+          url: app.requestUrls.order,
           data: {
             order:that.data.finalorder,
             code: code
